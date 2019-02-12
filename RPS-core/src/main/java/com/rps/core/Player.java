@@ -9,6 +9,9 @@ public class Player {
         return name;
     }
 
+    public Player() {
+    }
+
     public Player(String name, String id) {
         this.name = name;
         this.id = id;

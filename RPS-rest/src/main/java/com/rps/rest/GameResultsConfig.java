@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GameResultsConfig {
 
-    @Bean
-    public GameResultIdProvider gameResultIdProvider(){
-        return null;
-    }
+//    @Bean
+//    public GameResultIdProvider gameResultIdProvider(){
+//        return null;
+//    }
 
     @Bean
     public CreateGameResultUseCase createGameResultUseCase( DatabaseGameResultRepository databaseGameResultRepository, GameResultIdProvider gameResultIdProvider ){

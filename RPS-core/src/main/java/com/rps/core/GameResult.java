@@ -37,6 +37,22 @@ public class GameResult {
         return gameResultId;
     }
 
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
+    }
+
+    public void setOutcome(Outcome outcome) {
+        this.outcome = outcome;
+    }
+
+    public void setGameResultId(int gameResultId) {
+        this.gameResultId = gameResultId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
