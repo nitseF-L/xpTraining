@@ -32,7 +32,7 @@ public class GameResultsController {
 
 
     @PostMapping("/practice")
-    public Outcome PlayPracticeGameResult(@RequestBody PlayPracticeGameUseCase.Request request ){
+    public PlayPracticeGameUseCase.Response PlayPracticeGameResult(@RequestBody PlayPracticeGameUseCase.Request request ){
         System.out.println("Player 1 throw: " + request.player1Throw );
         System.out.println("Player 2 throw: " + request.player2Throw );
         return playPracticeGameUseCase.execute( request );

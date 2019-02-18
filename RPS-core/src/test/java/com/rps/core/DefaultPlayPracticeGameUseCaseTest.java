@@ -26,23 +26,23 @@ public class DefaultPlayPracticeGameUseCaseTest {
         request.player1Throw = ROCK;
         request.player2Throw = SCISSORS;
 
-        Outcome outcome = defaultCreateGameResultUseCase.execute( request );
+        PlayPracticeGameUseCase.Response response = defaultCreateGameResultUseCase.execute( request );
 
-        Assert.assertEquals( P1_WINS, outcome );
+        Assert.assertEquals( P1_WINS, response.outcome );
 
         request.player1Throw = SCISSORS;
         request.player2Throw = ROCK;
 
-        outcome = defaultCreateGameResultUseCase.execute( request );
+        response = defaultCreateGameResultUseCase.execute( request );
 
-        Assert.assertEquals( P2_WINS, outcome );
+        Assert.assertEquals( P2_WINS, response.outcome );
 
         request.player1Throw = ROCK;
         request.player2Throw = ROCK;
 
-        outcome = defaultCreateGameResultUseCase.execute( request );
+        response = defaultCreateGameResultUseCase.execute( request );
 
-        Assert.assertEquals( TIE, outcome );
+        Assert.assertEquals( TIE, response.outcome );
 
 
 

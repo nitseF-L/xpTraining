@@ -1,8 +1,6 @@
 package com.rps.rest;
 
-import com.rps.core.CreateGameResultUseCase;
-import com.rps.core.DefaultCreateGameResultUseCase;
-import com.rps.core.GameResultIdProvider;
+import com.rps.core.*;
 import com.rps.persistence.DatabaseGameResultRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +17,11 @@ public class GameResultsConfig {
     public CreateGameResultUseCase createGameResultUseCase( DatabaseGameResultRepository databaseGameResultRepository, GameResultIdProvider gameResultIdProvider ){
         return new DefaultCreateGameResultUseCase( databaseGameResultRepository, gameResultIdProvider );
 
+    }
+
+    @Bean
+    public PlayPracticeGameUseCase playPracticeGameUseCase(){
+        return new DefaultPlayPracticeGameUseCase();
     }
 
 }
