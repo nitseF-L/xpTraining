@@ -5,13 +5,11 @@ import com.rps.core.GameResult;
 import com.rps.core.Outcome;
 import com.rps.core.PlayPracticeGameUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/gameResults")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api/gameResults")
 public class GameResultsController {
 
     private final CreateGameResultUseCase createGameResultUseCase;
@@ -23,7 +21,7 @@ public class GameResultsController {
         this.playPracticeGameUseCase = playPracticeGameUseCase;
     }
 
-    @PostMapping
+    @PostMapping("/createGame")
     public GameResult CreateGameResult(@RequestBody CreateGameResultUseCase.Request request ){
         System.out.println("Player 1 throw: " + request.player1Throw );
         System.out.println("Player 2 throw: " + request.player2Throw );

@@ -19,8 +19,8 @@ export const throwLocalization = {
 }
 
 export enum OutCome {
-    P1Wins = 'P1WINS',
-    P2Wins = 'P2WINS',
+    P1Wins = 'P1_WINS',
+    P2Wins = 'P2_WINS',
     Tie = 'TIE'
 }
 

@@ -36,7 +36,9 @@ export class AppComponent {
       new PlayPracticeGameRequest( this.player1Throw, this.player2Throw ))
       .subscribe( (response) => {
         this.gameResult = outcomeLocatization[response.outcome];
+        console.log(response.outcome);
+        console.log(outcomeLocatization[response.outcome]);
       });
-    console.log('Clicked called')
+    
   }
 }

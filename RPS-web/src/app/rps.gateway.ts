@@ -7,8 +7,8 @@ export abstract class RpsGateway {
 
 export class PlayPracticeGameRequest {
     constructor(
-        public p1Throw: Throw,
-        public p2Throw: Throw
+        public player1Throw: Throw,
+        public player2Throw: Throw
     ) {}
 }
 

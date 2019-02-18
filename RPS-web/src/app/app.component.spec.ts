@@ -1,7 +1,5 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { By } from '@angular/platform-browser';
-import { ComponentTestHelper } from './component-test-helper';
 import { StubRpsGateway } from './stub.rps.gateway';
 import { RpsGateway } from './rps.gateway';
 import { FormsModule } from '@angular/forms';
@@ -66,8 +64,8 @@ describe('AppComponent', () => {
     
       fixture.whenStable().then( () => {
         console.log( 'In Stable');
-        expect(stubRpsGateway.savePlayPraticeGameCalledWith.p1Throw).toBe('ROCK');
-        expect(stubRpsGateway.savePlayPraticeGameCalledWith.p2Throw).toBe('PAPER');
+        expect(stubRpsGateway.savePlayPraticeGameCalledWith.player1Throw).toBe('ROCK');
+        expect(stubRpsGateway.savePlayPraticeGameCalledWith.player2Throw).toBe('PAPER');
       });
       //field.dispatchEvent( new Event( 'input'));
       expect(compiled.querySelector('h1').textContent).toContain('Welcome to Rock, Paper, Scissors!');

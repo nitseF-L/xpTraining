@@ -10,6 +10,6 @@ export class HttpRpsGateway implements RpsGateway {
     constructor( private http: HttpClient ){ }
 
     playPraticeGame(request: PlayPracticeGameRequest ): Observable<PlayPracticeGameResponse>{
-        return this.http.post<PlayPracticeGameResponse>( '/api/gameResults/practice', request );
+        return this.http.post<PlayPracticeGameResponse>( 'http://localhost:8080/api/gameResults/practice', request );
     }
 }
