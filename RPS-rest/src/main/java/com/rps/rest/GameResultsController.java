@@ -21,7 +21,7 @@ public class GameResultsController {
         this.playPracticeGameUseCase = playPracticeGameUseCase;
     }
 
-    @PostMapping("/createGame")
+    @PostMapping
     public GameResult CreateGameResult(@RequestBody CreateGameResultUseCase.Request request ){
         System.out.println("Player 1 throw: " + request.player1Throw );
         System.out.println("Player 2 throw: " + request.player2Throw );

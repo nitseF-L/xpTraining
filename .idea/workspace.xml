@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="63ac3e0c-00d0-4f03-9ec3-19548d1da256" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RPS-rest/src/main/java/com/rps/rest/GameResultsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-rest/src/main/java/com/rps/rest/GameResultsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RPS-web/src/app/app.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-web/src/app/app.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RPS-web/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-web/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RPS-web/src/app/http.rps.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-web/src/app/http.rps.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RPS-web/src/app/rps.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-web/src/app/rps.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RPS-web/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-web/src/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,7 +21,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/GameResult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="-7">
               <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
               <folding>
                 <element signature="e#798#799#0" expanded="true" />
@@ -48,7 +42,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RPS-rest/src/main/java/com/rps/rest/RestApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="-7">
               <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -59,14 +53,16 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RPS-web/src/index.html">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7" />
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RPS-web/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            <state relative-caret-position="-9">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -74,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RPS-web/src/app/app.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="-9">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -83,7 +79,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/PlayPracticeGameUseCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="114">
               <caret line="7" column="33" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="33" />
               <folding>
                 <element signature="e#315#316#0" expanded="true" />
@@ -96,7 +92,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/CreateGameResultUseCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="-7">
               <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
@@ -105,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RPS-rest/src/main/java/com/rps/rest/GameResultsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="-18">
               <caret line="32" column="111" selection-start-line="32" selection-start-column="104" selection-end-line="32" selection-end-column="111" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -215,10 +211,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1958" />
-    <option name="y" value="160" />
-    <option name="width" value="1288" />
-    <option name="height" value="863" />
+    <option name="x" value="1972" />
+    <option name="y" value="34" />
+    <option name="width" value="1457" />
+    <option name="height" value="955" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -301,13 +297,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550491888407" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550492983891" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -460,18 +456,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1958" y="160" width="1288" height="863" extended-state="0" />
+    <frame x="1972" y="34" width="1457" height="955" extended-state="0" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.3281759" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.2884753" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.46958983" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.5118899" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="2" weight="0.32520324" />
+      <window_info anchor="bottom" id="Messages" order="2" weight="0.32390383" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.4390244" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32890365" />
@@ -708,7 +704,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/GameResult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="-7">
           <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
           <folding>
             <element signature="e#798#799#0" expanded="true" />
@@ -756,7 +752,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/CreateGameResultUseCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
+        <state relative-caret-position="-7">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
@@ -772,25 +768,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RPS-web/src/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7" />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RPS-web/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="-9">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RPS-web/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        <state relative-caret-position="-9">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RPS-rest/src/main/java/com/rps/rest/RestApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="-7">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -800,7 +798,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RPS-rest/src/main/java/com/rps/rest/GameResultsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="-18">
           <caret line="32" column="111" selection-start-line="32" selection-start-column="104" selection-end-line="32" selection-end-column="111" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -810,7 +808,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/PlayPracticeGameUseCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="114">
           <caret line="7" column="33" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="33" />
           <folding>
             <element signature="e#315#316#0" expanded="true" />
