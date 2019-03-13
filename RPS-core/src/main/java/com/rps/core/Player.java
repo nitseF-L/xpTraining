@@ -1,5 +1,7 @@
 package com.rps.core;
 
+import java.util.Objects;
+
 public class Player {
 
     private String name;
@@ -35,5 +37,19 @@ public class Player {
                 "name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+        Player player = (Player) o;
+        return Objects.equals(getName(), player.getName()) &&
+                Objects.equals(getId(), player.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getId());
     }
 }

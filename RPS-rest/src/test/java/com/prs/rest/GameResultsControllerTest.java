@@ -44,6 +44,7 @@ public class GameResultsControllerTest {
             stubCreateGameResultUseCase = new StubCreateGameResultUseCase();
             return stubCreateGameResultUseCase;
         }
+
     }
 
     @Autowired

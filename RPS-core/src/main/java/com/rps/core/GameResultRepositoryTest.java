@@ -23,7 +23,7 @@ public abstract class GameResultRepositoryTest {
         gameResultRepository.save( gameResult );
         List<GameResult> gameResults = gameResultRepository.findAll();
         Assert.assertEquals(gameResults.size(), 1 );
-        Assert.assertEquals( gameResults.get(0), gameResult );
+        Assert.assertEquals( gameResult.equals( gameResults.get(0) ), true );
     }
 
     @Test
