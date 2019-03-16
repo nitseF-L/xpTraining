@@ -1,5 +1,7 @@
 package com.rps.core;
 
+import java.util.List;
+
 public class DefaultCreateGameResultUseCase implements CreateGameResultUseCase {
 
     private GameResultRepository gameResultRepository;
@@ -13,6 +15,10 @@ public class DefaultCreateGameResultUseCase implements CreateGameResultUseCase {
 
     @Override
     public GameResult execute(Request request) {
+        List<GameResult> games = gameResultRepository.findAll();
+        for( GameResult game : games ){
+            System.out.println("Game: " + game );
+        }
         return gameResultRepository.save(
                 new GameResult(
                         request.player1,

@@ -1,8 +1,9 @@
-import { Throw, OutCome } from './game';
+import { Throw, Outcome, Player, GameResult } from './game';
 import { Observable } from 'rxjs';
 
 export abstract class RpsGateway {
     abstract playPraticeGame(request: PlayPracticeGameRequest ): Observable<PlayPracticeGameResponse>;
+    abstract playGame(request: PlayGameRequest ): Observable<GameResult>;
 }
 
 export class PlayPracticeGameRequest {
@@ -14,6 +15,16 @@ export class PlayPracticeGameRequest {
 
 export class PlayPracticeGameResponse {
     constructor(
-        public outcome: OutCome
+        public outcome: Outcome
     ) {}
 }
+
+export class PlayGameRequest {
+    constructor(
+        public player1: Player,
+        public player2: Player,
+        public player1Throw: Throw,
+        public player2Throw: Throw
+    ) {}
+}
+
