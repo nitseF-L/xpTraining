@@ -1,41 +1,36 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
 </div>
+
 <div>
   <label for="player1Name">Player 1 Name </label>
-  <input [(ngModel)]=player1Name type="text" id="player1Name" >
+  <input [(ngModel)]=player1Name type="text" id="player1Name">
   <label for="player1Id">Id</label>
-  <input [(ngModel)]=player1Id type="text" id="player1Id" >
+  <input [(ngModel)]=player1Id type="text" id="player1Id">
   <label for="player1Throw">Throw </label>
-  <!-- <input [(ngModel)]=p1val type="text" id="p1throw" > -->
-  <select [(ngModel)]="player1Throw" id="player1Throw" >
+  <select [(ngModel)]="player1Throw" id="player1Throw">
     <option [value]="undefined">Select a value</option>
     <option *ngFor="let p1Throw of throwTypes" [value]="p1Throw">
       {{throwLocalization[p1Throw]}}</option>
   </select>
+
   <p></p>
   <label for="player2Name">Player 2 Name </label>
-  <input [(ngModel)]=player2Name type="text" id="player2Name" >
+  <input [(ngModel)]=player2Name type="text" id="player2Name">
   <label for="player2Id">Id</label>
-  <input [(ngModel)]=player2Id type="text" id="player2Id" >
+  <input [(ngModel)]=player2Id type="text" id="player2Id">
   <label for="player2Throw">Throw </label>
-  <select [(ngModel)]="player2Throw" id="player2Throw" >
-      <option [value]="undefined">Select a value</option>
-      <option *ngFor="let p2Throw of throwTypes" [value]="p2Throw">
-        {{throwLocalization[p2Throw]}}</option>
-    </select>
-  <!-- <select id="player2Throw" (change)="palyer2throws($event.target.value)">
+  <select [(ngModel)]="player2Throw" id="player2Throw">
     <option [value]="undefined">Select a value</option>
-    <option *ngFor="let player2Throw of throwTypes" [value]="player2Throw">
-      {{throwLocalization[player2Throw]}}</option>
-  </select> -->
+    <option *ngFor="let p2Throw of throwTypes" [value]="p2Throw">
+      {{throwLocalization[p2Throw]}}</option>
+  </select>
+
   <p></p>
-  <!-- <input [(ngModel)]=p2val type="text" id="p2throw" > -->
   <button id="playGame" type="submit" (click)="playGame()">Play</button>
-  <button id="praticeGame" type="submit" (click)="playPraticeGame()">Pratice</button>
-  {{gameResult}}
-  
+  <button id="practiceGame" type="submit" (click)="playPracticeGame()">Practice</button>
+  <p id="gameResult">{{gameResult}}</p>
+
 </div>
