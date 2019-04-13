@@ -1,20 +1,33 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { StubRpsGateway } from './stub.rps.gateway';
 import { RpsGateway } from './rps.gateway';
-import { FormsModule } from '@angular/forms';
 
 
 describe('AppComponent', () => {
-
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  let componentEl: any;
   let stubRpsGateway: StubRpsGateway;
 
-  beforeEach(async(() => {
+  const triggerInput = (id: string, value: string) => {
+    const el: HTMLInputElement = componentEl.querySelector(`input[id=${id}]`);
+    el.value = value;
+    el.dispatchEvent(new Event('input'));
+  };
 
+  const triggerSelect = (id: string, value: string) => {
+    const el: HTMLInputElement = componentEl.querySelector(`select[id=${id}]`);
+    el.value = value;
+    el.dispatchEvent(new Event('change'));
+  };
+
+  beforeEach(async(() => {
     stubRpsGateway = new StubRpsGateway();
 
     TestBed.configureTestingModule({
-      imports: [ FormsModule ],
+      imports: [FormsModule],
       declarations: [
         AppComponent
       ],
@@ -24,102 +37,66 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    componentEl = fixture.debugElement.nativeElement;
+  });
 
   describe('When the component loads', () => {
-    
     it('should create the app', () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.debugElement.componentInstance;
-      expect(app).toBeTruthy();
+      expect(component).toBeTruthy();
     });
 
     it(`should have as title 'Rock, Paper, Scissors'`, () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.debugElement.componentInstance;
-      expect(app.title).toEqual('Rock, Paper, Scissors');
+      expect(component.title).toEqual('Rock, Paper, Scissors');
     });
 
     it('should render title in a h1 tag ', () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.detectChanges();
-      const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('h1').textContent).toContain('Welcome to Rock, Paper, Scissors!');
+      expect(componentEl.querySelector('h1').textContent).toContain('Welcome to Rock, Paper, Scissors!');
     });
 
-    it('should send pratice game request to gateway', () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.detectChanges();
-      const compiled = fixture.debugElement.nativeElement;
+    it('should send practice game request to gateway', () => {
+      spyOn(component, 'playPracticeGame').and.callThrough();
+      triggerSelect('player2Throw', 'PAPER');
+      triggerInput('player1Name', 'Jane');
+      triggerSelect('player1Throw', 'ROCK');
+      triggerSelect('player2Throw', 'PAPER');
+      expect(componentEl.querySelector('#gameResult').textContent).toBe('');
 
-      const p2Input: HTMLInputElement = compiled.querySelector('select[id=player2Throw]');
-      p2Input.value = 'PAPER';
-      p2Input.dispatchEvent( new Event('change'));
-
-      const p1Name: HTMLInputElement = compiled.querySelector('input[id=player1Name]');
-      p1Name.value = 'Jane';
-      p1Name.dispatchEvent( new Event('input'));
-      
-      const p1Input: HTMLInputElement = compiled.querySelector('select[id=player1Throw]');
-      p1Input.value = 'ROCK';
-      p1Input.dispatchEvent( new Event('change'));
-      
-      const p3Input: HTMLInputElement = compiled.querySelector('select[id=player2Throw]');
-      p3Input.value = 'PAPER';
-      p3Input.dispatchEvent( new Event('change'));
-      
-      let button = compiled.querySelector('button[id=praticeGame]');
+      const button = componentEl.querySelector('button[id=practiceGame]');
       button.click();
-      fixture.detectChanges();
-    
-      fixture.whenStable().then( () => {
-        console.log( 'In Stable');
-        expect(stubRpsGateway.savePlayPraticeGameCalledWith.player1Throw).toBe('ROCK');
-        expect(stubRpsGateway.savePlayPraticeGameCalledWith.player2Throw).toBe('PAPER');
+      expect(component.playPracticeGame).toHaveBeenCalled();
+
+      fixture.whenStable().then(() => {
+        console.log('In Stable');
+        fixture.detectChanges();
+        expect(stubRpsGateway.savePlayPracticeGameCalledWith.player1Throw).toBe('ROCK');
+        expect(stubRpsGateway.savePlayPracticeGameCalledWith.player2Throw).toBe('PAPER');
+        expect(componentEl.querySelector('#gameResult').textContent).toBe('Player 1 Wins');
       });
-      //field.dispatchEvent( new Event( 'input'));
-      expect(compiled.querySelector('h1').textContent).toContain('Welcome to Rock, Paper, Scissors!');
     });
 
     it('should send game request to gateway', () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.detectChanges();
-      const compiled = fixture.debugElement.nativeElement;
-      const p1Input: HTMLInputElement = compiled.querySelector('select[id=player1Throw]');
-      p1Input.value = 'ROCK';
-      p1Input.dispatchEvent( new Event('change'));
-      
-      const p2Input: HTMLInputElement = compiled.querySelector('select[id=player2Throw]');
-      p2Input.value = 'PAPER';
-      p2Input.dispatchEvent( new Event('change'));
+      spyOn(component, 'playGame').and.callThrough();
+      triggerSelect('player1Throw', 'ROCK');
+      triggerSelect('player2Throw', 'PAPER');
+      triggerInput('player1Name', 'Jane');
+      triggerInput('player2Name', 'John');
+      triggerInput('player1Id', 'A001');
+      triggerInput('player2Id', 'A002');
+      expect(componentEl.querySelector('#gameResult').textContent).toBe('');
 
-      const p1Name: HTMLInputElement = compiled.querySelector('input[id=player1Name]');
-      p1Name.value = 'Jane';
-      p1Name.dispatchEvent( new Event('input'));
-
-      const p2Name: HTMLInputElement = compiled.querySelector('input[id=player2Name]');
-      p2Name.value = 'John';
-      p2Name.dispatchEvent( new Event('input'));
-
-      const p1Id: HTMLInputElement = compiled.querySelector('input[id=player1Id]');
-      p1Id.value = 'A001';
-      p1Id.dispatchEvent( new Event('input'));
-
-      const p2Id: HTMLInputElement = compiled.querySelector('input[id=player2Id]');
-      p2Id.value = 'A002';
-      p2Id.dispatchEvent( new Event('input'));
-      
-      let button = compiled.querySelector('button[id=praticeGame]');
+      const button = componentEl.querySelector('button[id=playGame]');
       button.click();
-      fixture.detectChanges();
-    
-      fixture.whenStable().then( () => {
-        console.log( 'In Stable');
-        expect(stubRpsGateway.savePlayPraticeGameCalledWith.player1Throw).toBe('ROCK');
-        expect(stubRpsGateway.savePlayPraticeGameCalledWith.player2Throw).toBe('PAPER');
-      });
-      //field.dispatchEvent( new Event( 'input'));
-      expect(compiled.querySelector('h1').textContent).toContain('Welcome to Rock, Paper, Scissors!');
-    });
+      expect(component.playGame).toHaveBeenCalled();
 
+      fixture.whenStable().then(() => {
+        console.log('In Stable');
+        fixture.detectChanges();
+        expect(componentEl.querySelector('#gameResult').textContent).toBe('Player 1 Wins');
+      });
+    });
   });
 });
