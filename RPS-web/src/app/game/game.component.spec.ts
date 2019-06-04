@@ -4,24 +4,35 @@ import { GameComponent } from './game.component';
 import { MaterialModule } from '../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { StubRpsGateway } from './stub.game.gateway';
-import { RpsGateway } from './game.gateway';
+import { StubGameGateway } from './stub.game.gateway';
+import { GameGateway, PlayGameRequest } from './game.gateway';
+import { FormsModule } from '@angular/forms';
+import { HttpGameGateway } from './http.game.gateway';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { PlayPracticeGameRequest } from 'src/app-deprecated/rps.gateway';
+import { Player } from 'src/app-deprecated/game';
 
 describe('GameComponent', () => {
   let component: GameComponent;
   let fixture: ComponentFixture<GameComponent>;
-  let stubRpsGateway: StubRpsGateway;
+  let stubRpsGateway: StubGameGateway;
   let htmlTestBed: any;
 
   beforeEach(async(() => {
+    stubRpsGateway = new StubGameGateway();
+
     TestBed.configureTestingModule({
       declarations: [ GameComponent ],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FormsModule
       ],
       providers: [
-        { provide: RpsGateway, useValue: stubRpsGateway }
+        HttpHandler,
+        HttpClient,
+        HttpGameGateway,
+        { provide: GameGateway, useValue: stubRpsGateway }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -36,13 +47,13 @@ describe('GameComponent', () => {
   });
 
   function triggerInput(id: string, passedValue: string)  {
-    const element: HTMLInputElement = htmlTestBed.querySelector(`input[id=${id}]`);
+    const element: HTMLInputElement = /*htmlTestBed.querySelector(`input[id=${id}]`);*/ fixture.nativeElement.querySelector(`#${id}`);
     element.value = passedValue;
     element.dispatchEvent(new Event('input'));
   }
 
   function triggerSelect(id: string, passedValue: string) {
-    const element: HTMLInputElement = htmlTestBed.querySelector(`select[id=${id}]`);
+    const element: HTMLInputElement = /*htmlTestBed.querySelector(`select[id=${id}]`);*/ fixture.nativeElement.querySelector(`#${id}`);
     element.value = passedValue;
     element.dispatchEvent(new Event('change'));
   }
@@ -69,23 +80,37 @@ describe('GameComponent', () => {
     expect(fixture.nativeElement.querySelector('#player2Id')).toBeFalsy();
   });
 
-  it('should process a ranked game through the gateway', () => {
-    // arrange
-    // fill in the values for players one and two
+  xit('should process a ranked game through the gateway', () => {
     triggerSelect('player1Name', 'Jane Doe');
     triggerSelect('player2Name', 'John Doe');
     triggerInput('player1Id', 'AA01');
     triggerInput('player2Id', 'AA02');
-    triggerSelect('player1Throw', 'ROCK');
-    triggerSelect('player2Throw', 'PAPER');
+    triggerSelect('player1Throw', 'PAPER');
+    triggerSelect('player2Throw', 'ROCK');
 
-    // act
-    // click the submit button
-    fixture.nativeElement.querySelector('#submit').click();
+    fixture.nativeElement.querySelector('#submit-ranked').click();
 
-    // assert
-    // expect the (stub) gateway is called with the correct values
-    expect(stubRpsGateway.submitCalledWith).toEqual();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const player1 = new Player(component.player1Name, component.player1Id);
+      const player2 = new Player(component.player2Name, component.player2Id);
+      stubRpsGateway.playGame(new PlayGameRequest(player1, player2, component.player1Throw, component.player2Throw)).subscribe(result => {
+        fixture.detectChanges();
+        expect(component.mostRecentOutcome).toBe('P1_WINS');
+      });
+    });
+  });
 
+  fit('should process a practice game through the gateway', () => {
+    triggerSelect('player1Throw', 'PAPER');
+    triggerSelect('player2Throw', 'ROCK');
+
+    fixture.nativeElement.querySelector('#submit-practice').click();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(stubRpsGateway.savePlayPracticeGameCalledWith.player1Throw).toBe('PAPER');
+      expect(stubRpsGateway.savePlayPracticeGameCalledWith.player2Throw).toBe('ROCK');
+    });
   });
 });

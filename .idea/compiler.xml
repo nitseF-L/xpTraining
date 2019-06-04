@@ -12,6 +12,5 @@
         <module name="RPS-web" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="9" />
   </component>
 </project>

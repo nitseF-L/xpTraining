@@ -4,8 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RpsGateway } from './game/game.gateway';
-import { HttpRpsGateway } from './game/http.game.gateway';
+import { GameGateway } from './game/game.gateway';
+import { HttpGameGateway } from './game/http.game.gateway';
 // ng import { RankedGameComponent } from './game/ranked-game/ranked-game.component';
 import { GameComponent } from './game/game.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -31,7 +31,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     AppRoutingModule // must be last to facilitate subrouting
   ],
   providers: [
-    {provide: RpsGateway, useClass: HttpRpsGateway}
+    HttpGameGateway,
+    {provide: GameGateway, useClass: HttpGameGateway}
   ],
   bootstrap: [AppComponent]
 })
