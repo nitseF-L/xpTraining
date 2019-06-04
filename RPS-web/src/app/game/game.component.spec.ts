@@ -19,7 +19,16 @@ describe('GameComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render the UI', () => {
+    // expect(component.isPracticeGame).toBe(false);
+    expect(fixture.nativeElement.querySelector('#player1Throw')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#player2Throw')).toBeTruthy();
+
+    expect(fixture.nativeElement.querySelector('#player1Name')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#player2Name')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#player1Id')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#player2Id')).toBeTruthy();
+
+
   });
 });

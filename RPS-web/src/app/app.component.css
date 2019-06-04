@@ -1,0 +1,17 @@
+.container {
+    width:100%;
+    position: fixed;
+}
+
+.sidenav {
+    width: 25%;
+    display: inline;
+    position: relative;
+    left: 0;
+}
+
+.content {
+    display: inline;
+    position: relative;
+    right: 0;
+}

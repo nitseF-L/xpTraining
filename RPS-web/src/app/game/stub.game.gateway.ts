@@ -1,8 +1,8 @@
-import { GameResult, Player, Throw, Outcome } from './game';
+//import { GameResult, Player, Throw, Outcome } from './game';
 import { Observable, of } from 'rxjs';
-import { RpsGateway, PlayPracticeGameRequest, PlayPracticeGameResponse, PlayGameRequest } from './game.gateway';
+//import { RpsGateway, PlayPracticeGameRequest, PlayPracticeGameResponse, PlayGameRequest } from './game.gateway';
 
-export class StubRpsGateway implements RpsGateway {
+export class StubRpsGateway /*implements RpsGateway*/ {
 
   // savePlayPracticeGameCalledWith: PlayPracticeGameRequest;
 

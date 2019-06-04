@@ -6,21 +6,29 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RpsGateway } from './game/game.gateway';
 import { HttpRpsGateway } from './game/http.game.gateway';
-import { RankedGameComponent } from './game/ranked-game/ranked-game.component';
+// ng import { RankedGameComponent } from './game/ranked-game/ranked-game.component';
 import { GameComponent } from './game/game.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app.routing.module';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RankedGameComponent,
+    // RankedGameComponent,
     GameComponent,
+    LeaderboardComponent,
     SidebarComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    MaterialModule,
+    HttpClientModule,
+    AppRoutingModule // must be last to facilitate subrouting
   ],
   providers: [
     {provide: RpsGateway, useClass: HttpRpsGateway}
