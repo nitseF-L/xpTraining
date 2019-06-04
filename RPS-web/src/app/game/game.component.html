@@ -1,17 +1,28 @@
-<label for="player1Throw">Throw </label>
+<mat-label for="player1Name" *ngIf="isPracticeGame === false">Ranked</mat-label>
+<mat-label for="player1Name" *ngIf="isPracticeGame === true">Practice</mat-label>
+<mat-slide-toggle id="gameModeToggle" [checked]="isPracticeGame" (change)="isPracticeGame = !isPracticeGame"></mat-slide-toggle>
+
+
+<ng-container *ngIf="isPracticeGame === false">
+    <mat-label for="player1Name">Player 1 Name</mat-label>
+    <input  type="text" id="player1Name">
+    <mat-label for="player1Id">Id</mat-label>
+    <input  type="text" id="player1Id">
+</ng-container>
+
+<mat-label for="player1Throw">Throw</mat-label>
 <select id="player1Throw">
   <option [value]="undefined">Select a value</option>
 </select>
-<label for="player1Name">Player 1 Name </label>
-  <input  type="text" id="player1Name">
-  <label for="player1Id">Id</label>
-  <input  type="text" id="player1Id">
 
-<label for="player2Throw">Throw </label>
+<ng-container *ngIf="isPracticeGame === false">
+    <mat-label for="player2Name">Player 2 Name</mat-label>
+    <input type="text" id="player2Name">
+    <mat-label for="player2Id">Id</mat-label>
+    <input type="text" id="player2Id">
+</ng-container>
+
+<mat-label for="player2Throw">Throw</mat-label>
 <select id="player2Throw">
   <option [value]="undefined">Select a value</option>
 </select>
-<label for="player2Name">Player 2 Name </label>
-  <input type="text" id="player2Name">
-  <label for="player2Id">Id</label>
-  <input type="text" id="player2Id">

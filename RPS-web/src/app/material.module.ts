@@ -15,6 +15,7 @@ import {
     // MatExpansionModule,
     // MatGridListModule,
     MatIconModule,
+    MatFormFieldModule, 
     // MatInputModule,
     // MatListModule,
     // MatMenuModule,
@@ -26,8 +27,8 @@ import {
     // MatRippleModule,
     // MatSelectModule,
     MatSidenavModule,
-    // MatSliderModule,
-    // MatSlideToggleModule,
+    MatSliderModule,
+    MatSlideToggleModule,
     // MatSnackBarModule,
     // MatSortModule,
     // MatStepperModule,
@@ -37,9 +38,14 @@ import {
     // MatTooltipModule,
     // MatTreeModule,
   } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule, MatSidenavModule, MatIconModule],
-  exports: [MatButtonModule, MatCheckboxModule, MatSidenavModule, MatIconModule],
+  imports: [MatButtonModule, MatCheckboxModule, MatSidenavModule,
+            MatIconModule, MatSlideToggleModule, MatSliderModule,
+            BrowserAnimationsModule, MatFormFieldModule],
+  exports: [MatButtonModule, MatCheckboxModule, MatSidenavModule,
+            MatIconModule, MatSlideToggleModule, MatSliderModule,
+            BrowserAnimationsModule, MatFormFieldModule],
 })
 export class MaterialModule { }
