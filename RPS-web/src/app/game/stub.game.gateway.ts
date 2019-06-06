@@ -5,6 +5,7 @@ import { GameGateway, PlayPracticeGameRequest, PlayPracticeGameResponse, PlayGam
 export class StubGameGateway implements GameGateway {
 
   playPracticeGameCalledWith: PlayPracticeGameRequest;
+  playGameCalledWith: PlayGameRequest;
 
   playPracticeGame(request: PlayPracticeGameRequest): Observable<PlayPracticeGameResponse> {
     this.playPracticeGameCalledWith = request;
@@ -13,8 +14,8 @@ export class StubGameGateway implements GameGateway {
   }
 
   playGame(request: PlayGameRequest): Observable<GameResult> {
-    const p1: Player = new Player('Jane Doe', 'A001');
-    const p2: Player = new Player('John Doe', 'A002');
-    return of(new GameResult(p1, p2, Throw.Rock, Throw.Scissors, Outcome.P1Wins));
+    this.playGameCalledWith = request;
+
+    return of(new GameResult(request.player1, request.player2, request.player1Throw, request.player2Throw, Outcome.Tie));
   }
 }

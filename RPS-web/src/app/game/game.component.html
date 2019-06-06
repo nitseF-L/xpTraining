@@ -1,13 +1,7 @@
-
-
-
-
-
-
 <div class="container content">
     <mat-label for="gameModeToggle" *ngIf="isPracticeGame === false">Ranked</mat-label>
     <mat-label for="gameModeToggle" *ngIf="isPracticeGame === true">Practice</mat-label>
-    <mat-slide-toggle id="gameModeToggle" [checked]="isPracticeGame" (change)="isPracticeGame = !isPracticeGame"></mat-slide-toggle> <!-- container centers content on large screens -->
+    <mat-slide-toggle id="gameModeToggle" [checked]="isPracticeGame" (change)="flipToggle()"></mat-slide-toggle> <!-- container centers content on large screens -->
   <div class="row">             <!-- responsive row has 12 columns by default -->
     <div class="col-md-6">    
       <div class="row">

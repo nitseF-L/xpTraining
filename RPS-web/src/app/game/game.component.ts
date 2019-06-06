@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Player, Throw, throwLocalization } from './game';
 import { HttpGameGateway } from './http.game.gateway';
-import { PlayGameRequest, PlayPracticeGameRequest } from './game.gateway';
+import { PlayGameRequest, PlayPracticeGameRequest, GameGateway } from './game.gateway';
 import { MatDialog } from '@angular/material';
 
 @Component({
@@ -20,10 +20,14 @@ export class GameComponent implements OnInit {
   throwTypes: Throw[] = Object.keys(Throw).map(value => Throw[value]);
   throwLocalization = throwLocalization;
   mostRecentOutcome = '';
+  rankedGameRequest: PlayGameRequest;
+  practiceGameRequest: PlayPracticeGameRequest;
 
   isPracticeGame = false;
 
-  constructor(private httpGateway: HttpGameGateway) {}
+  constructor(private gameGateway: GameGateway) {
+
+  }
 
   ngOnInit() {
   }
@@ -33,10 +37,9 @@ export class GameComponent implements OnInit {
     const player1: Player = new Player(this.player1Name, this.player1Id);
     const player2: Player = new Player(this.player2Name, this.player2Id);
 
-    const rankedGameRequest: PlayGameRequest = new PlayGameRequest(player1, player2, this.player1Throw, this.player2Throw);
-    console.log('request: ', rankedGameRequest);
+    this.rankedGameRequest = new PlayGameRequest(player1, player2, this.player1Throw, this.player2Throw);
 
-    this.httpGateway.playGame(rankedGameRequest).subscribe(gameResult => {
+    this.gameGateway.playGame(this.rankedGameRequest).subscribe(gameResult => {
       this.mostRecentOutcome = gameResult.outcome;
     });
   }
@@ -44,10 +47,14 @@ export class GameComponent implements OnInit {
   processPracticeGame() {
     this.mostRecentOutcome = '';
 
-    const practiceGameRequest: PlayPracticeGameRequest = new PlayPracticeGameRequest(this.player1Throw, this.player2Throw);
+    this.practiceGameRequest = new PlayPracticeGameRequest(this.player1Throw, this.player2Throw);
 
-    this.httpGateway.playPracticeGame(practiceGameRequest).subscribe(gameResult => {
+    this.gameGateway.playPracticeGame(this.practiceGameRequest).subscribe(gameResult => {
       this.mostRecentOutcome = gameResult.outcome;
     });
+  }
+
+  flipToggle() {
+    this.isPracticeGame = !this.isPracticeGame;
   }
 }

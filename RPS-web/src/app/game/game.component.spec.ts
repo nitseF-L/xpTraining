@@ -5,12 +5,8 @@ import { MaterialModule } from '../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StubGameGateway } from './stub.game.gateway';
-import { GameGateway, PlayGameRequest } from './game.gateway';
+import { GameGateway } from './game.gateway';
 import { FormsModule } from '@angular/forms';
-import { HttpGameGateway } from './http.game.gateway';
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { PlayPracticeGameRequest } from 'src/app-deprecated/rps.gateway';
-import { Player } from 'src/app-deprecated/game';
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -29,9 +25,6 @@ describe('GameComponent', () => {
         FormsModule
       ],
       providers: [
-        HttpHandler,
-        HttpClient,
-        HttpGameGateway,
         { provide: GameGateway, useValue: stubRpsGateway }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -46,16 +39,16 @@ describe('GameComponent', () => {
     fixture.detectChanges();
   });
 
-  function triggerInput(id: string, passedValue: string)  {
-    const element: HTMLInputElement = /*htmlTestBed.querySelector(`input[id=${id}]`);*/ fixture.nativeElement.querySelector(`#${id}`);
-    element.value = passedValue;
-    element.dispatchEvent(new Event('input'));
-  }
-
   function triggerSelect(id: string, passedValue: string) {
-    const element: HTMLInputElement = /*htmlTestBed.querySelector(`select[id=${id}]`);*/ fixture.nativeElement.querySelector(`#${id}`);
+    const element: HTMLInputElement = fixture.nativeElement.querySelector(`#${id}`);
     element.value = passedValue;
     element.dispatchEvent(new Event('change'));
+  }
+
+  function triggerInput(id: string, passedValue: string) {
+    const element: HTMLInputElement = fixture.nativeElement.querySelector(`#${id}`);
+    element.value = passedValue;
+    element.dispatchEvent(new Event('input'));
   }
 
   it('should toggle between ranked and practice game', () => {
@@ -68,51 +61,55 @@ describe('GameComponent', () => {
     expect(fixture.nativeElement.querySelector('#player1Id')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('#player2Id')).toBeTruthy();
 
-    const toggle = fixture.nativeElement.querySelector('#gameToggle');
-    toggle.click();
+    // const toggle = fixture.nativeElement.querySelector('#gameModeToggle');
+    // toggle.click();
+    // fixture.detectChanges();
+
+    component.flipToggle();
+    fixture.detectChanges();
 
     expect(component.isPracticeGame).toBe(true);
+    expect(fixture.nativeElement.querySelector('#player1Name')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#player1Id')).toBeNull();
     expect(fixture.nativeElement.querySelector('#player1Throw')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#player2Name')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#player2Id')).toBeNull();
     expect(fixture.nativeElement.querySelector('#player2Throw')).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('#player1Name')).toBeFalsy();
-    expect(fixture.nativeElement.querySelector('#player2Name')).toBeFalsy();
-    expect(fixture.nativeElement.querySelector('#player1Id')).toBeFalsy();
-    expect(fixture.nativeElement.querySelector('#player2Id')).toBeFalsy();
   });
 
-  xit('should process a ranked game through the gateway', () => {
-    triggerSelect('player1Name', 'Jane Doe');
-    triggerSelect('player2Name', 'John Doe');
-    triggerInput('player1Id', 'AA01');
-    triggerInput('player2Id', 'AA02');
+  it('should process a ranked game through the gateway',  async(() => {
+    component.isPracticeGame = false;
+    fixture.detectChanges();
     triggerSelect('player1Throw', 'PAPER');
-    triggerSelect('player2Throw', 'ROCK');
+    triggerInput('player1Name', 'Player 1');
+    triggerInput('player1Id', '12345');
 
-    fixture.nativeElement.querySelector('#submit-ranked').click();
+    triggerSelect('player2Throw', 'PAPER');
+    triggerInput('player2Name', 'Player 2');
+    triggerInput('player2Id', '67890');
+
+    const submit = fixture.nativeElement.querySelector('#submit-ranked');
+    submit.click();
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      const player1 = new Player(component.player1Name, component.player1Id);
-      const player2 = new Player(component.player2Name, component.player2Id);
-      stubRpsGateway.playGame(new PlayGameRequest(player1, player2, component.player1Throw, component.player2Throw)).subscribe(result => {
-        fixture.detectChanges();
-        expect(component.mostRecentOutcome).toBe('P1_WINS');
-      });
+      expect(stubRpsGateway.playGameCalledWith.player1Throw).toBe('PAPER');
+      expect(stubRpsGateway.playGameCalledWith.player1.name).toBe('Player 1');
+      expect(stubRpsGateway.playGameCalledWith.player1.id).toBe('12345');
+
+      expect(stubRpsGateway.playGameCalledWith.player2Throw).toBe('PAPER');
+      expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 2');
+      expect(stubRpsGateway.playGameCalledWith.player2.id).toBe('67890');
     });
-  });
+  }));
 
-  fit('should process a practice game through the gateway', () => {
-
-    // const toggle = fixture.nativeElement.querySelector('#gameToggle');
-    // toggle.click();
+  it('should process a practice game through the gateway', async(() => {
     component.isPracticeGame = true;
-    //expect(component.isPracticeGame).toBeFalsy();
     fixture.detectChanges();
     triggerSelect('player1Throw', 'SCISSORS');
     triggerSelect('player2Throw', 'ROCK');
 
     const submit = fixture.nativeElement.querySelector('#submit-practice');
-
     submit.click();
 
     fixture.whenStable().then(() => {
@@ -120,5 +117,5 @@ describe('GameComponent', () => {
       expect(stubRpsGateway.playPracticeGameCalledWith.player1Throw).toBe('SCISSORS');
       expect(stubRpsGateway.playPracticeGameCalledWith.player2Throw).toBe('ROCK');
     });
-  });
+  }));
 });
