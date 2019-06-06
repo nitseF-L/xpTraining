@@ -4,10 +4,10 @@ import { GameGateway, PlayPracticeGameRequest, PlayPracticeGameResponse, PlayGam
 
 export class StubGameGateway implements GameGateway {
 
-  savePlayPracticeGameCalledWith: PlayPracticeGameRequest;
+  playPracticeGameCalledWith: PlayPracticeGameRequest;
 
   playPracticeGame(request: PlayPracticeGameRequest): Observable<PlayPracticeGameResponse> {
-    this.savePlayPracticeGameCalledWith = request;
+    this.playPracticeGameCalledWith = request;
 
     return of(new PlayPracticeGameResponse(Outcome.P1Wins));
   }

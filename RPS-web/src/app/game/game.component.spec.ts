@@ -102,15 +102,23 @@ describe('GameComponent', () => {
   });
 
   fit('should process a practice game through the gateway', () => {
-    triggerSelect('player1Throw', 'PAPER');
+
+    // const toggle = fixture.nativeElement.querySelector('#gameToggle');
+    // toggle.click();
+    component.isPracticeGame = true;
+    //expect(component.isPracticeGame).toBeFalsy();
+    fixture.detectChanges();
+    triggerSelect('player1Throw', 'SCISSORS');
     triggerSelect('player2Throw', 'ROCK');
 
-    fixture.nativeElement.querySelector('#submit-practice').click();
+    const submit = fixture.nativeElement.querySelector('#submit-practice');
+
+    submit.click();
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(stubRpsGateway.savePlayPracticeGameCalledWith.player1Throw).toBe('PAPER');
-      expect(stubRpsGateway.savePlayPracticeGameCalledWith.player2Throw).toBe('ROCK');
+      expect(stubRpsGateway.playPracticeGameCalledWith.player1Throw).toBe('SCISSORS');
+      expect(stubRpsGateway.playPracticeGameCalledWith.player2Throw).toBe('ROCK');
     });
   });
 });

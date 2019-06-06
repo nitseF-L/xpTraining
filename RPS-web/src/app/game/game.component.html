@@ -37,23 +37,36 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6"> 
-      <ng-container *ngIf="isPracticeGame === false">
-          <mat-label for="player2Name">Player 2 Name</mat-label>
-          <br />
-          <input type="text" id="player2Name" [(ngModel)]=player2Name>
-          <mat-label for="player2Id">Id</mat-label>
-          <br />
-          <input type="text" id="player2Id" [(ngModel)]=player2Id>
-      </ng-container>
 
-      <mat-label for="player2Throw">Throw</mat-label>
-      <select id="player2Throw" [(ngModel)]="player2Throw">
-        <option [value]="undefined">Select a value</option>
-        <option *ngFor="let p2Throw of throwTypes" [value]="p2Throw">
-          {{throwLocalization[p2Throw]}}</option>
-      </select>
+    <div class="col-md-6">    
+      <div class="row">
+          <ng-container *ngIf="isPracticeGame === false">
+              <div class="row">
+                <div class="col-md-6">
+                    <mat-label for="player2Name">Player 2 Name</mat-label>
+                    <br />
+                    <input type="text" id="player2Name" [(ngModel)]=player2Name>
+                </div>
+                <div class="col-md-6">
+                    <mat-label for="player2Id">Id</mat-label>
+                    <br />
+                    <input type="text" id="player2Id" [(ngModel)]=player2Id>
+                </div>
+              </div>
+            </ng-container>
+      </div>
+      <div class="row">
+        <div class="throw-container">
+            <mat-label for="player2Throw">Throw</mat-label>
+            <select id="player2Throw" [(ngModel)]="player2Throw">
+              <option [value]="undefined">Select a value</option>
+              <option *ngFor="let p2Throw of throwTypes" [value]="p2Throw">
+                {{throwLocalization[p2Throw]}}</option>
+            </select>
+        </div>
+      </div>
     </div>
+
   </div>
   <div class="row">
       <button id="submit-ranked" mat-raised-button color="primary" *ngIf="isPracticeGame === false" (click)="processRankedGame()">Submit</button>
