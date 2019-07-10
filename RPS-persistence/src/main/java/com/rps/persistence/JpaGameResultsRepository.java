@@ -4,7 +4,6 @@ import com.rps.core.GameResult;
 import com.rps.core.Outcome;
 import com.rps.core.Player;
 import org.springframework.data.repository.Repository;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,9 +28,9 @@ public interface JpaGameResultsRepository extends Repository<JpaGameResultsRepos
         public Outcome outcome;
 
         public String player1Name;
-        public String player1Id;
+        public int player1Id;
         public String player2Name;
-        public String player2Id;
+        public int player2Id;
 
         public GameResultJpaEntity(GameResult gameResult ){
             this.gameResultId = gameResult.getGameResultId();

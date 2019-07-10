@@ -1,5 +1,5 @@
 <mat-drawer-container class="sidebar-container">
-    <mat-drawer id="sidebar" #drawer class="example-sidenav" mode="side">
+    <mat-drawer id="sidebar" #drawer class="sidenav-drawer" mode="side">
       <nav *ngIf="sidebarOpen">
           <a routerLink="/leaderboard" routerLinkActive="active">Leaderboard</a>
           <br />
@@ -7,8 +7,8 @@
       </nav>
     </mat-drawer>
   
-    <div class="example-sidenav-content">
-      <button id="hamburger-stack" type="button" mat-button (click)="drawer.toggle(); sidebarOpen = !sidebarOpen;">
+    <div class="sidenav-drawer2">
+      <button id="hamburger-stack" type="button" style="background-color:white;color:black" mat-button (click)="drawer.toggle(); sidebarOpen = !sidebarOpen;">
             <i *ngIf="!sidebarOpen" class="material-icons">menu</i>
             <i *ngIf="sidebarOpen" class="material-icons">arrow_back_ios</i>
       </button>

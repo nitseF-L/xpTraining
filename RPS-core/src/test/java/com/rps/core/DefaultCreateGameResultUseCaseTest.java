@@ -19,8 +19,8 @@ public class DefaultCreateGameResultUseCaseTest {
 
     @Test
     public void execute_persistsTheResult(){
-        Player player1 = new Player( "Jane Doe", "001");
-        Player player2 = new Player("John Doe", "002");
+        Player player1 = new Player( "Jane Doe", 1);
+        Player player2 = new Player("John Doe", 2);
 
         CreateGameResultUseCase.Request request = new CreateGameResultUseCase.Request( );
         request.player1 = player1;

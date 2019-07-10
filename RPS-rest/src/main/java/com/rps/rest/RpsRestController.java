@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/gameResults")
-public class GameResultsController {
+public class RpsRestController {
 
     private final CreateGameResultUseCase createGameResultUseCase;
     private final PlayPracticeGameUseCase playPracticeGameUseCase;
 
     @Autowired
-    GameResultsController(CreateGameResultUseCase createGameResultUseCase, PlayPracticeGameUseCase playPracticeGameUseCase){
+    RpsRestController(CreateGameResultUseCase createGameResultUseCase, PlayPracticeGameUseCase playPracticeGameUseCase){
         this.createGameResultUseCase = createGameResultUseCase;
         this.playPracticeGameUseCase = playPracticeGameUseCase;
     }

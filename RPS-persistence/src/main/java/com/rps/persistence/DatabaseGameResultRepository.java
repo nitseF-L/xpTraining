@@ -12,12 +12,10 @@ import java.util.stream.Collectors;
 @Component
 public class DatabaseGameResultRepository implements GameResultRepository {
 
-    final JdbcTemplate jdbcTemplate;
     final JpaGameResultsRepository jpaGameResultsRepository;
 
     @Autowired
-    public DatabaseGameResultRepository(JdbcTemplate jdbcTemplate, JpaGameResultsRepository jpaGameResultsRepository) {
-        this.jdbcTemplate = jdbcTemplate;
+    public DatabaseGameResultRepository(JpaGameResultsRepository jpaGameResultsRepository) {
         this.jpaGameResultsRepository = jpaGameResultsRepository;
     }
 

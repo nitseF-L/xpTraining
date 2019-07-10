@@ -17,19 +17,19 @@ public abstract class GameResultRepositoryTest {
 
     @Test
     public void canGetResults(){
-        Player player1 = new Player("Jane Doe", "001" );
-        Player player2 = new Player("John Doe", "002" );
+        Player player1 = new Player("Jane Doe", 1 );
+        Player player2 = new Player("John Doe", 2 );
         GameResult gameResult = new GameResult(player1, player2, Outcome.P1_WINS, 1 );
         gameResultRepository.save( gameResult );
         List<GameResult> gameResults = gameResultRepository.findAll();
-        Assert.assertEquals(gameResults.size(), 1 );
-        Assert.assertEquals( gameResult.equals( gameResults.get(0) ), true );
+        Assert.assertEquals( 1, gameResults.size() );
+        Assert.assertEquals( true, gameResult.equals( gameResults.get(0) ) );
     }
 
     @Test
     public void canGetResultsById(){
-        Player player1 = new Player("Jane Doe", "001" );
-        Player player2 = new Player("John Doe", "002" );
+        Player player1 = new Player("Jane Doe", 1 );
+        Player player2 = new Player("John Doe", 2 );
         GameResult gameResult = new GameResult(player1, player2, Outcome.P1_WINS, 1 );
         gameResultRepository.save( gameResult );
         gameResult = new GameResult(player1, player2, Outcome.P2_WINS, 2 );

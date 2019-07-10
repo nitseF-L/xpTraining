@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class GameResultsControllerTest {
+public class RpsRestControllerTest {
 
     private GameResult stubbedCreateGameUseCaseResponse;
 
@@ -87,8 +87,8 @@ public class GameResultsControllerTest {
 
     private CreateGameResultUseCase.Request buildCreateGameResultRequest() {
         CreateGameResultUseCase.Request request = new CreateGameResultUseCase.Request();
-        request.player1 = new Player( "Jane Doe", "001");
-        request.player2 = new Player("John Doe", "002");
+        request.player1 = new Player( "Jane Doe", 1);
+        request.player2 = new Player("John Doe", 2);
         request.player1Throw = ROCK;
         request.player2Throw = SCISSORS;
         return request;
