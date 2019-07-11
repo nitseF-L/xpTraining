@@ -18,4 +18,8 @@ export class StubGameGateway implements GameGateway {
 
     return of(new GameResult(request.player1, request.player2, request.player1Throw, request.player2Throw, Outcome.Tie));
   }
+
+  getPlayers(): Observable<Player>{
+    return of( (new Player("Player1",1), new Player("PLayer2",2 )));
+  }
 }

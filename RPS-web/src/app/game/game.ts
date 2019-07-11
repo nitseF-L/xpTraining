@@ -31,7 +31,7 @@ export const outcomeLocatization = {
 export class Player {
   constructor(
     public name: string,
-    public id: string,
+    public id: number,
   ) {}
 }
 

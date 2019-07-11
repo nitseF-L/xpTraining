@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 export abstract class GameGateway {
   abstract playPracticeGame(request: PlayPracticeGameRequest ): Observable<PlayPracticeGameResponse>;
   abstract playGame(request: PlayGameRequest ): Observable<GameResult>;
+  abstract getPlayers(): Observable<Player>;
 }
 
 export class PlayPracticeGameRequest {
@@ -26,5 +27,7 @@ export class PlayGameRequest {
     public player1Throw: Throw,
     public player2Throw: Throw
   ) {}
+  
+
 }
 
