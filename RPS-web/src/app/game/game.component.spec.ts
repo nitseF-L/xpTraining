@@ -7,6 +7,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StubGameGateway } from './stub.game.gateway';
 import { GameGateway } from './game.gateway';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { Outcome } from './game';
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -32,17 +34,29 @@ describe('GameComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     fixture = TestBed.createComponent(GameComponent);
     component = fixture.componentInstance;
     htmlTestBed = fixture.debugElement.nativeElement;
+    stubRpsGateway.stubOutcome = Outcome.P2Wins;
     fixture.detectChanges();
-  });
+  }));
 
   function triggerSelect(id: string, passedValue: string) {
     const element: HTMLInputElement = fixture.nativeElement.querySelector(`#${id}`);
     element.value = passedValue;
     element.dispatchEvent(new Event('change'));
+  }
+
+  function triggerMatSelect(id: string, optionIndex: number) {
+    const debugElement = fixture.debugElement.query(By.css(`#${id}`));
+    const matSelect = debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+    matSelect.click();
+    fixture.detectChanges();
+    console.log('available options: ', debugElement.queryAll(By.css('.mat-option')));
+    const matOption = debugElement.queryAll(By.css('.mat-option'))[optionIndex].nativeElement;
+    matOption.click();
+    fixture.detectChanges();
   }
 
   function triggerInput(id: string, passedValue: string) {
@@ -76,30 +90,29 @@ describe('GameComponent', () => {
     expect(fixture.nativeElement.querySelector('#player2Id')).toBeNull();
     expect(fixture.nativeElement.querySelector('#player2Throw')).toBeTruthy();
   });
-
-  it('should process a ranked game through the gateway',  async(() => {
+fit('should process a ranked game through the gateway',  async(() => {
+    component.ngOnInit();
     component.isPracticeGame = false;
     fixture.detectChanges();
-    triggerSelect('player1Throw', 'PAPER');
-    triggerInput('player1Name', 'Player 1');
-    triggerInput('player1Id', '12345');
+    triggerMatSelect('player1Throw', 3);
+    triggerMatSelect('player1Name', 0);
 
-    triggerSelect('player2Throw', 'PAPER');
-    triggerInput('player2Name', 'Player 2');
-    triggerInput('player2Id', '67890');
+    triggerMatSelect('player2Throw', 1);
+    triggerMatSelect('player2Name', 2);
 
     const submit = fixture.nativeElement.querySelector('#submit-ranked');
     submit.click();
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(stubRpsGateway.playGameCalledWith.player1Throw).toBe('PAPER');
+      expect(stubRpsGateway.playGameCalledWith.player1Throw).toBe('SCISSORS');
       expect(stubRpsGateway.playGameCalledWith.player1.name).toBe('Player 1');
-      expect(stubRpsGateway.playGameCalledWith.player1.id).toBe('12345');
+      expect(stubRpsGateway.playGameCalledWith.player1.id).toBe(1);
 
-      expect(stubRpsGateway.playGameCalledWith.player2Throw).toBe('PAPER');
-      expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 2');
-      expect(stubRpsGateway.playGameCalledWith.player2.id).toBe('67890');
+      expect(stubRpsGateway.playGameCalledWith.player2Throw).toBe('ROCK');
+      expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 3');
+      expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(3);
+      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain(stubRpsGateway.stubOutcome);
     });
   }));
 

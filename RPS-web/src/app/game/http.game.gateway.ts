@@ -16,7 +16,7 @@ export class HttpGameGateway implements GameGateway {
     return this.http.post<GameResult>( 'http://localhost:8080/api/gameResults', request );
   }
 
-  getPlayers(): Observable<Player>{
-    return this.http.get<Player>( 'http://localhost:8080/api/gameResults/playerList' );
+  getPlayers(): Observable<Player[]>{
+    return this.http.get<Player[]>( 'http://localhost:8080/api/gameResults/playerList' );
   }
 }

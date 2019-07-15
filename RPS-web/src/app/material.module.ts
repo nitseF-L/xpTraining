@@ -25,7 +25,7 @@ import {
     // MatProgressSpinnerModule,
     // MatRadioModule,
     // MatRippleModule,
-    // MatSelectModule,
+    MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
@@ -43,9 +43,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   imports: [MatButtonModule, MatCheckboxModule, MatSidenavModule,
             MatIconModule, MatSlideToggleModule, MatSliderModule,
-            BrowserAnimationsModule, MatFormFieldModule],
+            BrowserAnimationsModule, MatFormFieldModule, MatSelectModule],
   exports: [MatButtonModule, MatCheckboxModule, MatSidenavModule,
             MatIconModule, MatSlideToggleModule, MatSliderModule,
-            BrowserAnimationsModule, MatFormFieldModule],
+            BrowserAnimationsModule, MatFormFieldModule, MatSelectModule],
 })
 export class MaterialModule { }
