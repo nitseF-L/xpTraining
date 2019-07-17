@@ -1,8 +1,6 @@
 package com.rps.persistence;
 
-import com.rps.core.GameResult;
-import com.rps.core.Outcome;
-import com.rps.core.Player;
+import com.rps.core.*;
 import org.springframework.data.repository.Repository;
 
 import javax.persistence.*;
@@ -26,27 +24,38 @@ public interface JpaGameResultsRepository extends Repository<JpaGameResultsRepos
 
         @Enumerated(EnumType.STRING)
         public Outcome outcome;
+        @Enumerated(EnumType.STRING)
+        public Throw player1Throw;
+        @Enumerated(EnumType.STRING)
+        public Throw player2Throw;
 
-        public String player1Name;
         public int player1Id;
-        public String player2Name;
         public int player2Id;
 
         public GameResultJpaEntity(GameResult gameResult ){
             this.gameResultId = gameResult.getGameResultId();
             this.outcome = gameResult.getOutcome();
             this.player1Id = gameResult.getPlayer1().getId();
-            this.player1Name = gameResult.getPlayer1().getName();
             this.player2Id = gameResult.getPlayer2().getId();
-            this.player2Name = gameResult.getPlayer2().getName();
+            this.player1Throw = gameResult.getPlayer1Throw();
+            this.player2Throw = gameResult.getPlayer2Throw();
         }
 
-        public GameResult toDomainObject(){
+        public GameResult toDomainObject( String player1Name, String player2Name ){
             return new GameResult(
                     new Player( player1Name, player1Id ),
                     new Player( player2Name, player2Id ),
                     outcome,
-                    gameResultId
+                    player1Throw, player2Throw, gameResultId
+            );
+        }
+
+        public GameResult toDomainObject(PlayerRepository playerRepository){
+            return new GameResult(
+                    new Player( playerRepository.findById(player1Id).getName(), player1Id ),
+                    new Player( playerRepository.findById(player2Id).getName(), player2Id ),
+                    outcome,
+                    player1Throw, player2Throw, gameResultId
             );
         }
 

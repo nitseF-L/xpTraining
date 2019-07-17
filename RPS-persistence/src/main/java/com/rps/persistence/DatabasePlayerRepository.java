@@ -26,4 +26,18 @@ public class DatabasePlayerRepository implements PlayerRepository {
                 .map( JpaPlayerRepository.PlayerJpaEntity::toDomainObject )
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Player findById(int id) {
+        JpaPlayerRepository.PlayerJpaEntity jpaPlayer = jpaPlayerRepository.findById( id );
+        if( jpaPlayer != null )
+            return  jpaPlayer.toDomainObject();
+        return null;
+    }
+
+    @Override
+    public Player save(Player player) {
+        return jpaPlayerRepository.save( new JpaPlayerRepository.PlayerJpaEntity( player ))
+                .toDomainObject();
+    }
 }

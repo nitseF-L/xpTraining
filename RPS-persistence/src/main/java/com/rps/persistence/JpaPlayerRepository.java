@@ -12,6 +12,8 @@ import java.util.List;
 public interface JpaPlayerRepository extends Repository<JpaPlayerRepository.PlayerJpaEntity, Integer> {
 
     List<PlayerJpaEntity> findAllByOrderByPlayerIdAsc();
+    PlayerJpaEntity findById( int id );
+    PlayerJpaEntity save( PlayerJpaEntity playerJpaEntity );
 
     @Entity
     @Table(name = "players")

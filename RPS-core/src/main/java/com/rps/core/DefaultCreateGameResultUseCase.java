@@ -1,7 +1,5 @@
 package com.rps.core;
 
-import java.util.List;
-
 public class DefaultCreateGameResultUseCase implements CreateGameResultUseCase {
 
     private GameResultRepository gameResultRepository;
@@ -20,7 +18,7 @@ public class DefaultCreateGameResultUseCase implements CreateGameResultUseCase {
                         request.player1,
                         request.player2,
                         RPS.play( request.player1Throw, request.player2Throw),
-                        gameResultIdProvider.getId() )
+                        request.player1Throw, request.player2Throw, gameResultIdProvider.getId() )
         );
     }
 }

@@ -14,7 +14,11 @@ public abstract class PlayerRepositoryTest {
     protected abstract PlayerRepository getPlayerRepository();
 
     @Before
-    public void setup() { playerRepository = getPlayerRepository(); }
+    public void setup() {
+        playerRepository = getPlayerRepository();
+        playerRepository.save( new Player(  "Wonder Woman", 1));
+        playerRepository.save( new Player( "Deadpool", 8));
+    }
 
     @Test
     public void canGetPlayerList() {

@@ -1,9 +1,6 @@
 package com.prs.rest;
 
-import com.rps.core.CreateGameResultUseCase;
-import com.rps.core.GameResult;
-import com.rps.core.Outcome;
-import com.rps.core.Player;
+import com.rps.core.*;
 
 public class StubCreateGameResultUseCase implements CreateGameResultUseCase {
 
@@ -12,7 +9,7 @@ public class StubCreateGameResultUseCase implements CreateGameResultUseCase {
                     new Player("Jane Doe", 1),
                     new Player("John Doe", 2),
                     Outcome.P1_WINS,
-                    42
+                    Throw.ROCK, Throw.SCISSORS, 42
                     );
     public Request executeCalledWith;
 

@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DefaultGetPlayersUseCaseTest {
@@ -17,8 +16,8 @@ public class DefaultGetPlayersUseCaseTest {
         playerRepository = new InMemoryPlayerRepository();
         defaultGetPlayersUseCase = new DefaultGetPlayersUseCase(playerRepository);
 
-        playerRepository.players.add( new Player("Wonder Woman", 41));
-        playerRepository.players.add( new Player("Black Panther", 42));
+        playerRepository.save( new Player("Wonder Woman", 41));
+        playerRepository.save( new Player("Black Panther", 42));
     }
 
     @Test
@@ -28,6 +27,8 @@ public class DefaultGetPlayersUseCaseTest {
 
         Assert.assertEquals( 2, players.size() );
         Assert.assertEquals( "Wonder Woman", players.get(0).getName());
+        Assert.assertEquals( "Black Panther", players.get(1).getName());
+        Assert.assertEquals( 41, players.get(0).getId());
         Assert.assertEquals( 42, players.get(1).getId());
 
     }

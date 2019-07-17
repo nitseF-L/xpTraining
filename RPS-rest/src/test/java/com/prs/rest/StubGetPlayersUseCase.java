@@ -9,7 +9,7 @@ import java.util.List;
 public class StubGetPlayersUseCase implements GetPlayersUseCase {
 
     public List<Player> stubbedGetPlayersUseCaseResponse =
-            new  ArrayList<>();
+            new  ArrayList<Player>();
 
     @Override
     public List<Player> execute() {

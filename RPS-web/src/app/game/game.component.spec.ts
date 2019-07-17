@@ -48,6 +48,9 @@ describe('GameComponent', () => {
     element.dispatchEvent(new Event('change'));
   }
 
+  // This routine triggers a mat-select based on the drop down position
+  // The first or 0 index position is 'select a value' so the actual
+  // values are index positions 1 - N 
   function triggerMatSelect(id: string, optionIndex: number) {
     const debugElement = fixture.debugElement.query(By.css(`#${id}`));
     const matSelect = debugElement.query(By.css('.mat-select-trigger')).nativeElement;
@@ -72,8 +75,6 @@ describe('GameComponent', () => {
     expect(fixture.nativeElement.querySelector('#player2Throw')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('#player1Name')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('#player2Name')).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('#player1Id')).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('#player2Id')).toBeTruthy();
 
     // const toggle = fixture.nativeElement.querySelector('#gameModeToggle');
     // toggle.click();
@@ -84,13 +85,11 @@ describe('GameComponent', () => {
 
     expect(component.isPracticeGame).toBe(true);
     expect(fixture.nativeElement.querySelector('#player1Name')).toBeNull();
-    expect(fixture.nativeElement.querySelector('#player1Id')).toBeNull();
     expect(fixture.nativeElement.querySelector('#player1Throw')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('#player2Name')).toBeNull();
-    expect(fixture.nativeElement.querySelector('#player2Id')).toBeNull();
     expect(fixture.nativeElement.querySelector('#player2Throw')).toBeTruthy();
   });
-fit('should process a ranked game through the gateway',  async(() => {
+it('should process a ranked game through the gateway',  async(() => {
     component.ngOnInit();
     component.isPracticeGame = false;
     fixture.detectChanges();
@@ -119,8 +118,8 @@ fit('should process a ranked game through the gateway',  async(() => {
   it('should process a practice game through the gateway', async(() => {
     component.isPracticeGame = true;
     fixture.detectChanges();
-    triggerSelect('player1Throw', 'SCISSORS');
-    triggerSelect('player2Throw', 'ROCK');
+    triggerMatSelect('player1Throw', 3);
+    triggerMatSelect('player2Throw', 1);
 
     const submit = fixture.nativeElement.querySelector('#submit-practice');
     submit.click();

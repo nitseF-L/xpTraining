@@ -2,6 +2,7 @@ package com.rps.persistence;
 
 import com.rps.core.GameResultRepository;
 import com.rps.core.GameResultRepositoryTest;
+import com.rps.core.PlayerRepository;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class DatabaseGameResultsRepositoryTest extends GameResultRepositoryTest 
     DatabaseGameResultRepository databaseGameResultRepository;
 
     @Autowired
+    DatabasePlayerRepository databasePlayerRepository;
+
+    @Autowired
     DatabaseCleaner databaseCleaner;
 
     @Before
@@ -23,5 +27,10 @@ public class DatabaseGameResultsRepositoryTest extends GameResultRepositoryTest 
 
     protected GameResultRepository getGameResultRepository() {
         return databaseGameResultRepository;
+    }
+
+    @Override
+    protected PlayerRepository getPlayerRepository() {
+        return databasePlayerRepository;
     }
 }
