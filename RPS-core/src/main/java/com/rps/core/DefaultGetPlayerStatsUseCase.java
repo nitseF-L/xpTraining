@@ -1,8 +1,9 @@
 package com.rps.core;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 public class DefaultGetPlayerStatsUseCase implements GetPlayerStatsUseCase {
 
@@ -15,12 +16,29 @@ public class DefaultGetPlayerStatsUseCase implements GetPlayerStatsUseCase {
     @Override
     public List<PlayerStat> execute() {
         List<GameResult> results = gameResultRepository.findAll();
-        List<GameStat> playerOneList = results.stream()
-                .map( gr -> new GameStat( gr, true ))
-                .collect(Collectors.toList());
-        List<GameStat> playerOnTwoList = results.stream()
-                .map( gr -> new GameStat( gr, false ))
-                .collect(Collectors.toList());
-        return new ArrayList<>();
+
+        List<GameStat> gameStats = new ArrayList<>();
+
+        gameStats.addAll( results.stream()
+                .map( gr -> GameStat.getStats( gr ) )
+                .flatMap( gs -> Arrays.stream(gs))
+                .collect(Collectors.toList()));
+
+        Map<Player,PlayerStat> playerStats =
+            gameStats.stream()
+                .map( gs -> new PlayerStat( gs ))
+                .collect( Collectors
+                .toMap( PlayerStat::getPlayer, p -> p, (ps1, ps2) -> ps1.merge( ps2 ))
+                );
+
+        return new ArrayList<>( playerStats.values() );
+
+//        return playerStats.entrySet().stream()
+//                .sorted( (ps1,ps2) -> Double.compare( ps1.getValue().winPercentage(), ps2.getValue().winPercentage() ))
+//                .collect(Collectors.toList());
+
+//        return playerStats.entrySet().stream()
+//                .sorted( (ps1,ps2) -> Double.compare( ps1.getValue().winPercentage(), ps2.getValue().winPercentage() ) )
+//                .collect(Collectors.toList());
     }
 }

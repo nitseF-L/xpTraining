@@ -14,8 +14,27 @@ public class PlayerStat {
         this.gamesTied = gamesTied;
     }
 
+    public PlayerStat( GameStat gameStat ) {
+        this.player = gameStat.getPlayer();
+        switch ( gameStat.getResult() ){
+            case TIE: gamesTied = 1;
+                    break;
+            case WON: gamesWon = 1;
+                    break;
+            case LOSS: gamesLost =1;
+                    break;
+        }
+    }
+
     public double winPercentage(){
         return (gamesWon + (gamesTied * .5)) / getGamesPlayed() * 100;
+    }
+
+    public PlayerStat merge( PlayerStat ps ){
+        gamesWon += ps.gamesWon;
+        gamesTied += ps.gamesTied;
+        gamesLost += ps.gamesLost;
+        return this;
     }
 
     public int getGamesPlayed(){

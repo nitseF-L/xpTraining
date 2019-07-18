@@ -39,8 +39,8 @@ public class DefaultGetPlayerStatsUseCaseTest {
     public void execute_returnsPlayerStats() {
 
         List<PlayerStat> stats = defaultGetPlayerStatsUseCase.execute();
-//        Assert.assertEquals(4, stats.size());
-//        Assert.assertEquals(41, stats.get(0).getPlayer().getId());
+        Assert.assertEquals(4, stats.size());
+        Assert.assertEquals(41, stats.get(0).getPlayer().getId());
 
         }
 }

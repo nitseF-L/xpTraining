@@ -22,6 +22,15 @@ public class GameStat {
             result = Result.LOSS;
     }
 
+    public static GameStat[] getStats( GameResult gameResult ){
+        GameStat[] gameStats = {
+                new GameStat( gameResult, true ),
+                new GameStat( gameResult, false)
+        };
+
+        return gameStats;
+    }
+
     public int getGameResultId() {
         return gameResultId;
     }
