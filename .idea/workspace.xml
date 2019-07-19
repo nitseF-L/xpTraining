@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2eecc58-bc98-41d0-b832-7c307eb2e7b6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/DefaultGetPlayerStatsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/DefaultGetPlayerStatsUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/PlayerStat.java" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/PlayerStat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RPS-core/src/test/java/com/rps/core/DefaultGetPlayerStatsUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RPS-core/src/test/java/com/rps/core/DefaultGetPlayerStatsUseCaseTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/RPS-core/target/" />
     <ignored path="$PROJECT_DIR$/RPS-web/target/" />
@@ -90,8 +87,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/DefaultGetPlayerStatsUseCase.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="26" column="49" lean-forward="true" selection-start-line="23" selection-start-column="10" selection-end-line="26" selection-end-column="49" />
+                <state relative-caret-position="323">
+                  <caret line="19" column="45" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="45" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -139,12 +136,13 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/GameStat.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
-                  <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+                <state relative-caret-position="349">
+                  <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
                   <folding>
+                    <element signature="e#738#739#0" expanded="true" />
                     <element signature="e#773#774#0" expanded="true" />
                     <element signature="e#806#807#0" expanded="true" />
                     <element signature="e#835#836#0" expanded="true" />
@@ -168,10 +166,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/RPS-core/src/test/java/com/rps/core/DefaultGetPlayerStatsUseCaseTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="563">
+                <state relative-caret-position="833">
                   <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -559,9 +557,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DefaultGetPlayerStatsUseCaseTest_execute_returnsPlayerStats - 2019.07.19 at 13h 14m 02s.xml">
-      <configuration name="DefaultGetPlayerStatsUseCaseTest.execute_returnsPlayerStats" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="DefaultGetPlayerStatsUseCaseTest_execute_returnsPlayerStats - 2019.07.19 at 13h 14m 14s.xml">
       <configuration name="DefaultGetPlayerStatsUseCaseTest.execute_returnsPlayerStats" configurationId="JUnit" />
     </history-entry>
@@ -589,6 +584,9 @@
     <history-entry file="DefaultGetPlayerStatsUseCaseTest_execute_returnsPlayerStats - 2019.07.19 at 13h 22m 31s.xml">
       <configuration name="DefaultGetPlayerStatsUseCaseTest.execute_returnsPlayerStats" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="DefaultGetPlayerStatsUseCaseTest_execute_returnsPlayerStats - 2019.07.19 at 13h 27m 35s.xml">
+      <configuration name="DefaultGetPlayerStatsUseCaseTest.execute_returnsPlayerStats" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -607,12 +605,12 @@
       <window_info id="Learn" order="10" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3477905" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3477905" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.30032733" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.30032733" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32931727" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32815057" />
@@ -985,20 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/GameStat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-          <folding>
-            <element signature="e#773#774#0" expanded="true" />
-            <element signature="e#806#807#0" expanded="true" />
-            <element signature="e#835#836#0" expanded="true" />
-            <element signature="e#868#869#0" expanded="true" />
-            <element signature="e#897#898#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/GameResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1063,9 +1047,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/DefaultGetPlayerStatsUseCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/RPS-core/src/test/java/com/rps/core/DefaultGetPlayerStatsUseCaseTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
+        <state relative-caret-position="833">
           <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1073,12 +1067,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/DefaultGetPlayerStatsUseCase.java">
+    <entry file="file://$PROJECT_DIR$/RPS-core/src/main/java/com/rps/core/GameStat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="26" column="49" lean-forward="true" selection-start-line="23" selection-start-column="10" selection-end-line="26" selection-end-column="49" />
+        <state relative-caret-position="349">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#738#739#0" expanded="true" />
+            <element signature="e#773#774#0" expanded="true" />
+            <element signature="e#806#807#0" expanded="true" />
+            <element signature="e#835#836#0" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#897#898#0" expanded="true" />
           </folding>
         </state>
       </provider>
