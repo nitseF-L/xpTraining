@@ -26,7 +26,7 @@ public class PlayerStat {
         }
     }
 
-    public double winPercentage(){
+    public Double winPercentage(){
         return (gamesWon + (gamesTied * .5)) / getGamesPlayed() * 100;
     }
 

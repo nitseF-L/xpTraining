@@ -19,22 +19,39 @@ public class DefaultGetPlayerStatsUseCase implements GetPlayerStatsUseCase {
 
         List<GameStat> gameStats = new ArrayList<>();
 
-        gameStats.addAll( results.stream()
+        Comparator<PlayerStat> reversePlayerStatComparator = (h1, h2) -> h2.winPercentage().compareTo(h1.winPercentage());
+
+//        gameStats.addAll( results.stream()
+//                .map( gr -> GameStat.getStats( gr ) )
+//                .flatMap( gs -> Arrays.stream(gs))
+//                .collect(Collectors.toList()));
+
+//        Map<Player,PlayerStat> playerStats =
+        return  results.stream()
                 .map( gr -> GameStat.getStats( gr ) )
                 .flatMap( gs -> Arrays.stream(gs))
-                .collect(Collectors.toList()));
-
-        Map<Player,PlayerStat> playerStats =
-            gameStats.stream()
                 .map( gs -> new PlayerStat( gs ))
                 .collect( Collectors
-                .toMap( PlayerStat::getPlayer, p -> p, (ps1, ps2) -> ps1.merge( ps2 ))
-                );
+                        .toMap( PlayerStat::getPlayer, p -> p, (ps1, ps2) -> ps1.merge( ps2 ))
+                ).values().stream()
+                .sorted( reversePlayerStatComparator )
+                .collect(Collectors.toList());
 
-        return new ArrayList<>( playerStats.values() );
+//        gameStats.addAll( results.stream()
+//                .map( gr -> GameStat.getStats( gr ) )
+//                .flatMap( gs -> Arrays.stream(gs))
+//                .collect(Collectors.toList()));
+//
+////        Map<Player,PlayerStat> playerStats =
+//          return  gameStats.stream()
+//                .map( gs -> new PlayerStat( gs ))
+//                .collect( Collectors
+//                .toMap( PlayerStat::getPlayer, p -> p, (ps1, ps2) -> ps1.merge( ps2 ))
+//                ).values().stream()
+//                .sorted( reversePlayerStatComparator )
+//                .collect(Collectors.toList());
 
-//        return playerStats.entrySet().stream()
-//                .sorted( (ps1,ps2) -> Double.compare( ps1.getValue().winPercentage(), ps2.getValue().winPercentage() ))
+//        return playerStats.values().stream().sorted( reversePlayerStatComparator )
 //                .collect(Collectors.toList());
 
 //        return playerStats.entrySet().stream()

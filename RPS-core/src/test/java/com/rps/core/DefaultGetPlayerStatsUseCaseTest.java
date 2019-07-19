@@ -27,7 +27,7 @@ public class DefaultGetPlayerStatsUseCaseTest {
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player2, Throw.ROCK, Throw.SCISSORS));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player1, Throw.ROCK, Throw.PAPER));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player3, Throw.SCISSORS, Throw.PAPER));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.PAPER, Throw.ROCK));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.PAPER));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player4, Throw.SCISSORS, Throw.SCISSORS));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.SCISSORS));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player4, player2, Throw.ROCK, Throw.PAPER));
@@ -41,6 +41,13 @@ public class DefaultGetPlayerStatsUseCaseTest {
         List<PlayerStat> stats = defaultGetPlayerStatsUseCase.execute();
         Assert.assertEquals(4, stats.size());
         Assert.assertEquals(41, stats.get(0).getPlayer().getId());
+        Assert.assertEquals(43, stats.get(1).getPlayer().getId());
+        Assert.assertEquals(42, stats.get(2).getPlayer().getId());
+        Assert.assertEquals(44, stats.get(3).getPlayer().getId());
+        Assert.assertEquals(100.0, stats.get(0).winPercentage(), 0.001);
+        Assert.assertEquals(50.0, stats.get(1).winPercentage(), 0.001);
+        Assert.assertEquals(41.666, stats.get(2).winPercentage(), 0.001);
+        Assert.assertEquals(16.666, stats.get(3).winPercentage(), 0.001);
 
         }
 }
