@@ -3,11 +3,15 @@ package com.rps.core;
 public class PlayerStat {
 
     private Player player;
-    private int gamesWon;
-    private int gamesLost;
-    private int gamesTied;
+    private long gamesWon;
+    private long gamesLost;
+    private long gamesTied;
 
-    public PlayerStat(Player player, int gamesWon, int gamesLost, int gamesTied) {
+    public PlayerStat (){
+        player = null;
+    }
+
+    public PlayerStat(Player player, long gamesWon, long gamesLost, long gamesTied) {
         this.player = player;
         this.gamesWon = gamesWon;
         this.gamesLost = gamesLost;
@@ -37,7 +41,22 @@ public class PlayerStat {
         return this;
     }
 
-    public int getGamesPlayed(){
+    public PlayerStat merge( GameStat gameStat ){
+        if( player == null )
+            player = gameStat.getPlayer();
+
+        switch ( gameStat.getResult() ){
+            case TIE: gamesTied++;
+                break;
+            case WON: gamesWon++;
+                break;
+            case LOSS: gamesLost++;
+                break;
+        }
+        return this;
+    }
+
+    public long getGamesPlayed(){
         return gamesWon + gamesLost + gamesTied;
     }
 
@@ -49,27 +68,27 @@ public class PlayerStat {
         this.player = player;
     }
 
-    public int getGamesWon() {
+    public long getGamesWon() {
         return gamesWon;
     }
 
-    public void setGamesWon(int gamesWon) {
+    public void setGamesWon(long gamesWon) {
         this.gamesWon = gamesWon;
     }
 
-    public int getGamesLost() {
+    public long getGamesLost() {
         return gamesLost;
     }
 
-    public void setGamesLost(int gamesLost) {
+    public void setGamesLost(long gamesLost) {
         this.gamesLost = gamesLost;
     }
 
-    public int getGamesTied() {
+    public long getGamesTied() {
         return gamesTied;
     }
 
-    public void setGamesTied(int gamesTied) {
+    public void setGamesTied(long gamesTied) {
         this.gamesTied = gamesTied;
     }
 }

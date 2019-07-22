@@ -1,5 +1,7 @@
 package com.rps.core;
 
+import java.util.stream.Stream;
+
 public class GameStat {
 
     private int gameResultId;
@@ -22,14 +24,18 @@ public class GameStat {
             result = Result.LOSS;
     }
 
-    public static GameStat[] getStats( GameResult gameResult ){
-        GameStat[] gameStats = {
-                new GameStat( gameResult, true ),
-                new GameStat( gameResult, false)
-        };
-
-        return gameStats;
+    public int getValue( Result result ){
+        if( this.result == result )
+            return 1;
+        return 0;
     }
+
+
+//    public static Stream<GameStat> getStats(GameResult gameResult ){
+//
+//        return Stream.of( new GameStat( gameResult, true ),
+//                new GameStat( gameResult, false) );
+//    }
 
     public int getGameResultId() {
         return gameResultId;
