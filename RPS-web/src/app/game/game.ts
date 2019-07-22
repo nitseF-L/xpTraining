@@ -44,3 +44,14 @@ export class GameResult {
     public outcome: Outcome,
   ) {}
 }
+
+export class PlayerStat {
+  constructor(
+    public player: Player,
+    public gamesWon: number,
+    public gamesLost: number,
+    public gamesTied: number,
+    public gamesPlayed: number,
+    public winPercentage: number
+  ) {}
+}

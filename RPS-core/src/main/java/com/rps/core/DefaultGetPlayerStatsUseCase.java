@@ -1,7 +1,6 @@
 package com.rps.core;
 
 import java.util.*;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,21 +15,19 @@ public class DefaultGetPlayerStatsUseCase implements GetPlayerStatsUseCase {
     @Override
     public List<PlayerStat> execute() {
 
-        Comparator<PlayerStat> reversePlayerStatComparator = (h1, h2) -> h2.winPercentage().compareTo(h1.winPercentage());
+        Comparator<PlayerStat> reversePlayerStatComparator = (h1, h2) -> h2.getWinPercentage().compareTo(h1.getWinPercentage());
 
-//        Supplier< PlayerStat > supplier = () -> {
-//            return new PlayerStat();
-//        };
         Map<Player, Map<GameStat.Result,Long>> stats =  gameResultRepository.findAll().stream()
                 .flatMap( gr -> Stream.of( new GameStat( gr, true), new GameStat( gr, false)) )
                 .collect(Collectors.groupingBy( GameStat::getPlayer,
                                 Collectors.groupingBy( GameStat::getResult, Collectors.counting() )
                 ));
 
-        return stats.entrySet().stream().map( e -> new PlayerStat( e.getKey(),
-                getValue( e.getValue(), GameStat.Result.WON),
-                getValue(e.getValue(), GameStat.Result.LOSS),
-                getValue(e.getValue(), GameStat.Result.TIE)) )
+        return stats.entrySet().stream()
+                .map( e -> new PlayerStat( e.getKey(),
+                            getValue(e.getValue(), GameStat.Result.WON),
+                            getValue(e.getValue(), GameStat.Result.LOSS),
+                            getValue(e.getValue(), GameStat.Result.TIE)) )
                 .sorted( reversePlayerStatComparator )
                 .collect(Collectors.toList());
 

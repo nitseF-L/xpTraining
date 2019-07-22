@@ -14,12 +14,15 @@ public class RpsRestController {
     private final CreateGameResultUseCase createGameResultUseCase;
     private final PlayPracticeGameUseCase playPracticeGameUseCase;
     private final GetPlayersUseCase getPlayersUseCase;
+    private final GetPlayerStatsUseCase getPlayerStatsUseCase;
 
     @Autowired
-    RpsRestController(CreateGameResultUseCase createGameResultUseCase, PlayPracticeGameUseCase playPracticeGameUseCase, GetPlayersUseCase getPlayersUseCase){
+    RpsRestController(CreateGameResultUseCase createGameResultUseCase, PlayPracticeGameUseCase playPracticeGameUseCase,
+                      GetPlayersUseCase getPlayersUseCase, GetPlayerStatsUseCase getPlayerStatsUseCase){
         this.createGameResultUseCase = createGameResultUseCase;
         this.playPracticeGameUseCase = playPracticeGameUseCase;
         this.getPlayersUseCase = getPlayersUseCase;
+        this.getPlayerStatsUseCase = getPlayerStatsUseCase;
     }
 
     @PostMapping
@@ -40,5 +43,10 @@ public class RpsRestController {
     @GetMapping("/playerList")
     public List<Player> getPlayerList( ){
         return getPlayersUseCase.execute();
+    }
+
+    @GetMapping("/playerStats")
+    public List<PlayerStat> getPlayerStats( ){
+        return getPlayerStatsUseCase.execute();
     }
 }

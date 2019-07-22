@@ -26,4 +26,9 @@ public class GameResultsConfig {
         return new DefaultGetPlayersUseCase( playerRepository );
     }
 
+    @Bean
+    public GetPlayerStatsUseCase getPlayerStatsUseCase(DatabaseGameResultRepository databaseGameResultRepository){
+        return new DefaultGetPlayerStatsUseCase( databaseGameResultRepository );
+    }
+
 }

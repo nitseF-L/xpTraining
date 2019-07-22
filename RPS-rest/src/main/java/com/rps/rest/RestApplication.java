@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //@PropertySource("classpath:persistence.properties")
 @EnableJpaRepositories("com.rps.persistence")
 @EntityScan("com.rps.persistence")
-public class RestApplication extends SpringBootServletInitializer {
+public class  RestApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
 
         SpringApplication.run( RestApplication.class, args);

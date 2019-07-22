@@ -1,10 +1,11 @@
-import { Throw, Outcome, Player, GameResult } from './game';
+import { Throw, Outcome, Player, GameResult, PlayerStat } from './game';
 import { Observable } from 'rxjs';
 
 export abstract class GameGateway {
   abstract playPracticeGame(request: PlayPracticeGameRequest ): Observable<PlayPracticeGameResponse>;
   abstract playGame(request: PlayGameRequest ): Observable<GameResult>;
   abstract getPlayers(): Observable<Player[]>;
+  abstract getPlayerStats(): Observable<PlayerStat[]>;
 }
 
 export class PlayPracticeGameRequest {
