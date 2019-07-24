@@ -17,6 +17,19 @@ public class DefaultGetPlayerStatsUseCase implements GetPlayerStatsUseCase {
 
         Comparator<PlayerStat> reversePlayerStatComparator = (h1, h2) -> h2.getWinPercentage().compareTo(h1.getWinPercentage());
 
+        Object xxx = gameResultRepository.findAll().stream()
+                .flatMap( gr -> Stream.of( new GameRecord( gr.getPlayer1().getId(), gr),
+                        new GameRecord( gr.getPlayer2().getId(), gr)) ).collect(Collectors.groupingBy(GameRecord::getPlayer))
+                .entrySet().stream()
+                .collect(Collectors.toMap( x -> {
+                    int sumWins = x.getValue().stream().mapToInt( gr -> (gr.getResult() == GameRecord.Result.WON) ? 1 : 0).sum();
+                    int sumLoses = x.getValue().stream().mapToInt( gr -> (gr.getResult() == GameRecord.Result.LOSS) ? 1 : 0).sum();
+                    int sumTies = x.getValue().stream().mapToInt( gr -> (gr.getResult() == GameRecord.Result.TIE) ? 1 : 0).sum();
+                    return new PlayerStat(x.getKey(), sumWins, sumLoses, sumTies);
+                }, Map.Entry::getValue))
+                .keySet()
+                ;
+
         Map<Player, Map<GameRecord.Result,Long>> stats =  gameResultRepository.findAll().stream()
                 .flatMap( gr -> Stream.of( new GameRecord( gr.getPlayer1().getId(), gr),
                                             new GameRecord( gr.getPlayer2().getId(), gr)) )
