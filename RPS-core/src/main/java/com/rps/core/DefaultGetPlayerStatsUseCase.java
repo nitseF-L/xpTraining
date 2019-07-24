@@ -17,17 +17,18 @@ public class DefaultGetPlayerStatsUseCase implements GetPlayerStatsUseCase {
 
         Comparator<PlayerStat> reversePlayerStatComparator = (h1, h2) -> h2.getWinPercentage().compareTo(h1.getWinPercentage());
 
-        Map<Player, Map<GameStat.Result,Long>> stats =  gameResultRepository.findAll().stream()
-                .flatMap( gr -> Stream.of( new GameStat( gr, true), new GameStat( gr, false)) )
-                .collect(Collectors.groupingBy( GameStat::getPlayer,
-                                Collectors.groupingBy( GameStat::getResult, Collectors.counting() )
+        Map<Player, Map<GameRecord.Result,Long>> stats =  gameResultRepository.findAll().stream()
+                .flatMap( gr -> Stream.of( new GameRecord( gr.getPlayer1().getId(), gr),
+                                            new GameRecord( gr.getPlayer2().getId(), gr)) )
+                .collect(Collectors.groupingBy( GameRecord::getPlayer,
+                                Collectors.groupingBy( GameRecord::getResult, Collectors.counting() )
                 ));
 
         return stats.entrySet().stream()
                 .map( e -> new PlayerStat( e.getKey(),
-                            getValue(e.getValue(), GameStat.Result.WON),
-                            getValue(e.getValue(), GameStat.Result.LOSS),
-                            getValue(e.getValue(), GameStat.Result.TIE)) )
+                            Optional.ofNullable(e.getValue().get( GameRecord.Result.WON)).orElse( 0L ),
+                            Optional.ofNullable(e.getValue().get( GameRecord.Result.LOSS)).orElse( 0L ),
+                            Optional.ofNullable(e.getValue().get( GameRecord.Result.TIE)).orElse( 0L ) ) )
                 .sorted( reversePlayerStatComparator )
                 .collect(Collectors.toList());
 
@@ -54,10 +55,10 @@ public class DefaultGetPlayerStatsUseCase implements GetPlayerStatsUseCase {
 
     }
 
-    private long getValue( Map<GameStat.Result,Long> map, GameStat.Result gameResult ) {
-        if( map.containsKey(gameResult)) {
-            return map.get(gameResult);
-        }
-        return 0;
-    }
+//    private long getValue( Map<GameStat.Result,Long> map, GameStat.Result gameResult ) {
+//        if( map.containsKey(gameResult)) {
+//            return map.get(gameResult);
+//        }
+//        return 0;
+//    }
 }
