@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="RPS-persistence" />
         <module name="RPS-core" />
-        <module name="RPS-web" />
+        <module name="RPS-persistence" />
         <module name="RPS-rest" />
+        <module name="RPS-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />

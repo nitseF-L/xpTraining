@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.*;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -96,9 +95,9 @@ public class RpsRestControllerTest {
         stubbedGetPlayersUseCaseResponse.add( new Player("player1", 11));
         stubbedGetPlayersUseCaseResponse.add( new Player("player2", 12));
         stubbedPlayerStatsUseCaseResponse = Config.stubGetPlayerStatsUseCase.stubbedGetPlayerStatsUseCaseResponse;
-        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player1", 21), 10, 0, 0));
-        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player2", 22), 6, 2, 2));
-        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player3", 23), 2, 4, 4));
+        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player1", 21), 10, 0, 0, rocksThrown, paperssThrown, scissorsThrown));
+        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player2", 22), 6, 2, 2, rocksThrown, paperssThrown, scissorsThrown));
+        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player3", 23), 2, 4, 4, rocksThrown, paperssThrown, scissorsThrown));
 
 
 

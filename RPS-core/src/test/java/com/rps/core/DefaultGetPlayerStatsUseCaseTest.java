@@ -25,8 +25,8 @@ public class DefaultGetPlayerStatsUseCaseTest {
         Player player3 = new Player("Iron Man", 43);
         Player player4 = new Player("Deadpool", 44);
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player2, Throw.ROCK, Throw.SCISSORS));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player1, Throw.ROCK, Throw.PAPER));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player3, Throw.SCISSORS, Throw.PAPER));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player1, Throw.SCISSORS, Throw.ROCK));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player3, Throw.ROCK, Throw.SCISSORS));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.PAPER));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player4, Throw.SCISSORS, Throw.SCISSORS));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.SCISSORS));
@@ -48,6 +48,12 @@ public class DefaultGetPlayerStatsUseCaseTest {
         Assert.assertEquals(50.0, stats.get(1).getWinPercentage(), 0.001);
         Assert.assertEquals(41.666, stats.get(2).getWinPercentage(), 0.001);
         Assert.assertEquals(16.666, stats.get(3).getWinPercentage(), 0.001);
+        Assert.assertEquals(100.0, stats.get(0).getRockPercent(), 0.001);
+        Assert.assertEquals(0.0, stats.get(0).getPaperPercent(), 0.001);
+        Assert.assertEquals(0.0, stats.get(0).getScissorsPercent(), 0.001);
+        Assert.assertEquals(33.333, stats.get(2).getRockPercent(), 0.001);
+        Assert.assertEquals(16.666, stats.get(2).getPaperPercent(), 0.001);
+        Assert.assertEquals(50.0, stats.get(2).getScissorsPercent(), 0.001);
 
         }
 }
