@@ -20,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
+import static com.rps.core.GameRecord.Result.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static com.rps.core.Outcome.*;
@@ -37,6 +38,7 @@ public class RpsRestControllerTest {
     private PlayPracticeGameUseCase.Response stubbedPlayPracticeGameUseCaseResponse;
     private List<Player> stubbedGetPlayersUseCaseResponse;
     private List<PlayerStat> stubbedPlayerStatsUseCaseResponse;
+    private List<GameRecord> stubbedGetPlayerGameRecordsUseCaseResponse;
 
     @Configuration
     @Import(RestApplication.class)
@@ -45,6 +47,7 @@ public class RpsRestControllerTest {
         public static StubPlayPracticeGameResultUseCase stubPlayPracticeGameResultUseCase;
         public static StubGetPlayersUseCase stubGetPlayersUseCase;
         public static StubGetPlayerStatsUseCase stubGetPlayerStatsUseCase;
+        public static StubGetPlayerGameRecordsUseCase stubGetPlayerGameRecordsUseCase;
 
         @Bean
         @Primary
@@ -74,6 +77,13 @@ public class RpsRestControllerTest {
             return stubGetPlayerStatsUseCase;
         }
 
+        @Bean
+        @Primary
+        public GetPlayerGameRecordsUseCase getStubGetPlayerGameRecordsUseCase(){
+            stubGetPlayerGameRecordsUseCase = new StubGetPlayerGameRecordsUseCase();
+            return stubGetPlayerGameRecordsUseCase;
+        }
+
     }
 
     @Autowired
@@ -94,12 +104,19 @@ public class RpsRestControllerTest {
         stubbedGetPlayersUseCaseResponse = Config.stubGetPlayersUseCase.stubbedGetPlayersUseCaseResponse;
         stubbedGetPlayersUseCaseResponse.add( new Player("player1", 11));
         stubbedGetPlayersUseCaseResponse.add( new Player("player2", 12));
+        Player player1 = new Player("player1", 21);
+        Player player2 = new Player("player2", 22);
+        Player player3 = new Player("player3", 23);
+        Player player4 = new Player("player4", 24);
         stubbedPlayerStatsUseCaseResponse = Config.stubGetPlayerStatsUseCase.stubbedGetPlayerStatsUseCaseResponse;
-        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player1", 21), 10, 0, 0, rocksThrown, paperssThrown, scissorsThrown));
-        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player2", 22), 6, 2, 2, rocksThrown, paperssThrown, scissorsThrown));
-        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( new Player("player3", 23), 2, 4, 4, rocksThrown, paperssThrown, scissorsThrown));
-
-
+        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( player1, 10, 0, 0, 5, 3, 2));
+        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( player2, 6, 2, 2, 2, 4, 4));
+        stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( player3, 2, 4, 4, 3, 3, 4));
+        stubbedGetPlayerGameRecordsUseCaseResponse = Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase;
+        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 1, player1, player2, WON, ROCK, SCISSORS ));
+        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 2, player1, player3, LOSS, ROCK, PAPER ));
+        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 3, player1, player4, GameRecord.Result.TIE, ROCK, ROCK ));
+        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 4, player1, player2, WON, SCISSORS, PAPER ));
 
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
@@ -203,5 +220,32 @@ public class RpsRestControllerTest {
                 .andExpect(jsonPath("$[2].player.id",
                         is(Config.stubGetPlayerStatsUseCase.stubbedGetPlayerStatsUseCaseResponse.get(2).getPlayer().getId() ) ));
 
+    }
+
+    @Test
+    public void getPlayerGameRecordsUseCase() throws Exception {
+
+
+        mvc
+                .perform(get("/api/gameResults/playerGameRecords/21" )
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].player.name",
+                        is(Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase.get(0).getPlayer().getName() ) ))
+                .andExpect(jsonPath("$[0].player.id",
+                        is(Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase.get(0).getPlayer().getId() ) ))
+                .andExpect(jsonPath("$[0].opponent.id",
+                        is(Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase.get(0).getOpponent().getId() ) ))
+                .andExpect(jsonPath("$[0].opponent.name",
+                        is(Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase.get(0).getOpponent().getName() ) ));
+        /*
+                .andExpect(jsonPath("$[0].result",
+                        is(Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase.get(0).getResult() ) ))
+                .andExpect(jsonPath("$[0].playerThrow",
+                        is(Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase.get(0).getPlayerThrow() ) ))
+                .andExpect(jsonPath("$[0].opponentThrow",
+                        is(Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase.get(0).getOpponentThrow() ) ));
+*/
     }
 }

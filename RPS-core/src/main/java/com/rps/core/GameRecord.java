@@ -9,9 +9,18 @@ public class GameRecord {
     private Throw playerThrow;
     private Throw opponentThrow;
 
-    enum Result { WON, LOSS, TIE }
+    public static enum Result { WON, LOSS, TIE }
 
-    public GameRecord( int playerId, GameResult gameResult ){
+    public GameRecord(int gameResultId, Player player, Player opponent, Result result, Throw playerThrow, Throw opponentThrow) {
+        this.gameResultId = gameResultId;
+        this.player = player;
+        this.opponent = opponent;
+        this.result = result;
+        this.playerThrow = playerThrow;
+        this.opponentThrow = opponentThrow;
+    }
+
+    public GameRecord(int playerId, GameResult gameResult ){
 
         gameResultId = gameResult.getGameResultId();
 

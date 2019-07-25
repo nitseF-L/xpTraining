@@ -31,4 +31,9 @@ public class GameResultsConfig {
         return new DefaultGetPlayerStatsUseCase( databaseGameResultRepository );
     }
 
+    @Bean
+    public GetPlayerGameRecordsUseCase getPlayerGameRecordsUseCase(DatabaseGameResultRepository databaseGameResultRepository){
+        return new DefaultGetPlayerGameRecordsUseCase( databaseGameResultRepository );
+    }
+
 }
