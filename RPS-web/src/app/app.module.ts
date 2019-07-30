@@ -13,6 +13,7 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing.module';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,12 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     FormsModule,
     MaterialModule,
     HttpClientModule,
+    CommonModule,
     AppRoutingModule // must be last to facilitate subrouting
+  ],
+  exports: [
+    BrowserModule,
+    CommonModule
   ],
   providers: [
     HttpGameGateway,

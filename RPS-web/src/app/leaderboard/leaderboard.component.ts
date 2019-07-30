@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerStat } from '../game/game';
+import { PlayerStat, GameRecord } from '../game/game';
 import { GameGateway } from '../game/game.gateway';
 
 @Component({
@@ -10,14 +10,24 @@ import { GameGateway } from '../game/game.gateway';
 export class LeaderboardComponent implements OnInit {
 
   playerStats: PlayerStat[] = [];
+  gameRecords: GameRecord[] = [];
+  selectedPlayer = -1;
 
   constructor(private gameGateway: GameGateway) {
     this.playerStats = [];
+    this.gameRecords = [];
   }
 
   ngOnInit() {
     this.playerStats = [];
     this.getPlayerStats();
+  }
+
+  showPlayer( playerId: number ){
+    console.log('Click - Player: ', playerId );
+    this.selectedPlayer = playerId;
+    this.gameRecords = [];
+    this.getGameRecords();
   }
 
   getPlayerStats() {
@@ -26,8 +36,18 @@ export class LeaderboardComponent implements OnInit {
         this.playerStats.push(returnedPlayerStats[i]);
       }
       // this.playerList = this.playerList.sort((a,b) => a.name.localeCompare(b.name));
-      console.log('got player Statss', this.playerStats);
-    })
+      console.log('got player Stats', this.playerStats);
+    });
+  }
+
+  getGameRecords(){
+    this.gameGateway.getPlayerGameRecords( this.selectedPlayer ).subscribe(returnedGameRecords => {
+      for(let i = 0; i < returnedGameRecords.length; i++) {
+        this.gameRecords.push(returnedGameRecords[i]);
+      }
+      // this.playerList = this.playerList.sort((a,b) => a.name.localeCompare(b.name));
+      console.log('got player game records', this.gameRecords);
+    });
   }
 
 }
