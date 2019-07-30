@@ -7,20 +7,20 @@ public class PlayerStat {
     private int gamesLost;
     private int gamesTied;
     private int rocksThrown;
-    private int paperssThrown;
+    private int papersThrown;
     private int scissorsThrown;
 
     public PlayerStat (){
         player = null;
     }
 
-    public PlayerStat(Player player, int gamesWon, int gamesLost, int gamesTied, int rocksThrown, int paperssThrown, int scissorsThrown) {
+    public PlayerStat(Player player, int gamesWon, int gamesLost, int gamesTied, int rocksThrown, int papersThrown, int scissorsThrown) {
         this.player = player;
         this.gamesWon = gamesWon;
         this.gamesLost = gamesLost;
         this.gamesTied = gamesTied;
         this.rocksThrown = rocksThrown;
-        this.paperssThrown = paperssThrown;
+        this.papersThrown = papersThrown;
         this.scissorsThrown = scissorsThrown;
     }
 
@@ -45,7 +45,7 @@ public class PlayerStat {
     }
 
     public Double getPaperPercent(){
-        return 100.0 * paperssThrown / getGamesPlayed();
+        return 100.0 * papersThrown / getGamesPlayed();
     }
 
     public Double getScissorsPercent(){
@@ -119,11 +119,11 @@ public class PlayerStat {
     }
 
     public int getPaperssThrown() {
-        return paperssThrown;
+        return papersThrown;
     }
 
     public void setPaperssThrown(int paperssThrown) {
-        this.paperssThrown = paperssThrown;
+        this.papersThrown = paperssThrown;
     }
 
     public int getScissorsThrown() {

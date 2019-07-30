@@ -22,6 +22,12 @@ export enum Outcome {
   Tie = 'TIE',
 }
 
+export enum Result {
+  Won = 'WON',
+  Loss = 'LOSS',
+  Tie = 'TIE'
+}
+
 export const outcomeLocatization = {
   [Outcome.P1Wins]: 'Player 1 Wins',
   [Outcome.P2Wins]: 'Player 2 Wins',
@@ -52,6 +58,24 @@ export class PlayerStat {
     public gamesLost: number,
     public gamesTied: number,
     public gamesPlayed: number,
-    public winPercentage: number
+    public winPercentage: number,
+    public rocksThrown: number,
+    public papersThrown: number,
+    public scissorsThrown: number,
+    public rockPercent: number,
+    public paperPercent: number,
+    public scissorsPercent: number
+  ) {}
+}
+
+
+export class GameRecord {
+  constructor(
+    public gameResultId: number,
+    public player: Player,
+    public opponent: Player,
+    public result: Result,
+    public playerThrow: Throw,
+    public opponentThrow: Throw
   ) {}
 }

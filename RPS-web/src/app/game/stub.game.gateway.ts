@@ -1,4 +1,4 @@
-import { GameResult, Player, PlayerStat, Throw, Outcome } from './game';
+import { GameResult, Player, PlayerStat, Throw, Outcome, Result, GameRecord } from './game';
 import { Observable, of } from 'rxjs';
 import { GameGateway, PlayPracticeGameRequest, PlayPracticeGameResponse, PlayGameRequest } from './game.gateway';
 
@@ -30,9 +30,16 @@ export class StubGameGateway implements GameGateway {
 
   getPlayerStats(): Observable<PlayerStat[]>{
     const tempArray: PlayerStat[] = [];
-    tempArray.push(new PlayerStat(new Player("Player 1",1 ), 10, 0, 0, 10, 100));
-    tempArray.push(new PlayerStat(new Player("Player 2",2 ), 6, 2, 2, 10, 70));
-    tempArray.push(new PlayerStat(new Player("Player 3",3 ), 2, 4, 4, 10, 40));
+    tempArray.push(new PlayerStat(new Player("Player 1",1 ), 10, 0, 0, 10, 100, 10, 0, 0, 100, 0, 0));
+    tempArray.push(new PlayerStat(new Player("Player 2",2 ), 6, 2, 2, 10, 70, 5, 2, 3, 50, 20, 30));
+    tempArray.push(new PlayerStat(new Player("Player 3",3 ), 2, 4, 4, 10, 40, 2, 1, 7, 20, 10, 70));
+    return of(tempArray);
+  }
+  getPlayerGameRecords(): Observable<GameRecord[]>{
+    const tempArray: GameRecord[] = [];
+    tempArray.push(new GameRecord( 1, new Player("Player 1",1 ), new Player("Player 2",2 ), Result.Won, Throw.Rock, Throw.Scissors));
+    tempArray.push(new GameRecord( 2, new Player("Player 1",1 ), new Player("Player 2",2 ), Result.Loss, Throw.Rock, Throw.Paper));
+    tempArray.push(new GameRecord( 3, new Player("Player 1",1 ), new Player("Player 3",3 ), Result.Won, Throw.Rock, Throw.Paper));
     return of(tempArray);
   }
 }
