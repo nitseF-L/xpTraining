@@ -19,18 +19,23 @@ export class LeaderboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.playerStats = [];
+    
     this.getPlayerStats();
   }
 
   showPlayer( playerId: number ){
     console.log('Click - Player: ', playerId );
     this.selectedPlayer = playerId;
-    this.gameRecords = [];
-    this.getGameRecords();
+    if( playerId === -1 ) {
+      this.getPlayerStats();
+    } else {
+      this.getGameRecords();
+    }
+
   }
 
   getPlayerStats() {
+    this.playerStats = [];
     this.gameGateway.getPlayerStats().subscribe(returnedPlayerStats => {
       for(let i = 0; i < returnedPlayerStats.length; i++) {
         this.playerStats.push(returnedPlayerStats[i]);
@@ -41,7 +46,8 @@ export class LeaderboardComponent implements OnInit {
   }
 
   getGameRecords(){
-    this.gameGateway.getPlayerGameRecords( this.selectedPlayer ).subscribe(returnedGameRecords => {
+    this.gameRecords = [];
+    this.gameGateway.getPlayerGameRecords( this.selectedPlayer).subscribe(returnedGameRecords => {
       for(let i = 0; i < returnedGameRecords.length; i++) {
         this.gameRecords.push(returnedGameRecords[i]);
       }

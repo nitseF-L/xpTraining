@@ -1,6 +1,6 @@
 CREATE TABLE PLAYERS(
     player_id int not null primary key,
-    player_name varchar2(255) not null
+    player_name varchar(255) not null
 );
 
 INSERT INTO PLAYERS (player_id, player_name) values (2, 'Iron Man');

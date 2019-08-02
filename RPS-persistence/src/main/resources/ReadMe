@@ -1,0 +1,24 @@
+
+This application is currently configured to run with MySql on the local host.
+Below are the configuration commands to run as root that create the databases
+for running the application and the test cases.
+
+create database RPS;
+use RPS;
+
+create user RPS_USER identified by 'Rps';
+
+GRANT ALL on RPS.* to RPS_USER;
+
+
+create database RPS_TEST;
+use RPS;
+
+create user RPS_USER_TEST identified by 'RpsTest';
+
+GRANT ALL on RPS_TEST.* to RPS_USER_TEST;
+
+
+SET GLOBAL time_zone = '+3:00';
+
+SET GLOBAL log_bin_trust_function_creators = 1;

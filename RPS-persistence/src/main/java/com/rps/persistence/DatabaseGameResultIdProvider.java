@@ -22,7 +22,7 @@ public class DatabaseGameResultIdProvider implements GameResultIdProvider {
 
     public int getId() {
 
-        List<Integer> seq = jdbcTemplate.query( "select nextval('GameResultIdSeq') val", new SeqRowMapper());
+        List<Integer> seq = jdbcTemplate.query( "select GameResultIdSeqValue() val", new SeqRowMapper());
         return seq.get(0);
     }
 
