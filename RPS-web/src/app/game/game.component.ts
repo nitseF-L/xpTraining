@@ -1,47 +1,87 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Player, Throw, throwLocalization } from './game';
 import { HttpGameGateway } from './http.game.gateway';
 import { PlayGameRequest, PlayPracticeGameRequest, GameGateway } from './game.gateway';
 import { MatDialog } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, OnDestroy {
+  
   gameResult: string;
-  player1Name: string;
-  player2Name: string;
-  player1Id: number;
-  player2Id: number;
-  player1Throw: Throw;
-  player2Throw: Throw;
+  // player1Name: string;
+  // player2Name: string;
+  // player1Id: number;
+  // player2Id: number;
+  // player1Throw: Throw;
+  // player2Throw: Throw;
   throwTypes: Throw[] = Object.keys(Throw).map(value => Throw[value]);
   throwLocalization = throwLocalization;
   mostRecentOutcome = '';
   rankedGameRequest: PlayGameRequest;
   practiceGameRequest: PlayPracticeGameRequest;
   playerList: Player[] = [];
-  selectedPlayer1: Player;
-  selectedPlayer2: Player;
+  // selectedPlayer1: Player;
+  // selectedPlayer2: Player;
+
+  _destroy: Subject<void> = new Subject<void>();
 
   isPracticeGame = false;
 
-  constructor(private gameGateway: GameGateway) {
+  gameForm: FormGroup;
 
+  constructor(private gameGateway: GameGateway, private fb: FormBuilder) {
+
+  }
+
+  ngOnDestroy(): void {
+    this._destroy.next();
+    this._destroy.complete();
   }
 
   ngOnInit() {
     this.playerList = [];
+    this.createForm();
     this.getPlayers();
+
+    // this.gameForm.get('player1Throw').pipe(takeUntill(this._destroy)).valueChanges.subscribe(x =>{
+    //   console.log(x);
+    // this.gameForm.get('pgagdsg').validator;
+    // this.gameForm.updateValueAndValidity()
+    // })
+    this.updateValidator();
+
+  }
+
+  createForm() {
+    this.gameForm = this.fb.group({
+      selectedPlayer1:[null],
+      selectedPlayer2: [null],
+      // player1Name: ['',[Validators.required]],
+      // player2Name: ['',[Validators.required]],
+      // player1Id: [null, [Validators.required]],
+      // player2Id: [null, [Validators.required]],
+      player1Throw: [null, [Validators.required]],
+      player2Throw: [null, [Validators.required]]
+    })
+  }
+
+  getValue( name ){
+    return this.gameForm.get( name ).value;
   }
 
   processRankedGame() {
     this.mostRecentOutcome = '';
-    this.rankedGameRequest = new PlayGameRequest(this.selectedPlayer1, this.selectedPlayer2, this.player1Throw, this.player2Throw);
+    this.rankedGameRequest = new PlayGameRequest(this.getValue('selectedPlayer1'), this.getValue('selectedPlayer2'), this.getValue('player1Throw'), this.getValue('player2Throw'));
 
-    this.gameGateway.playGame(this.rankedGameRequest).subscribe(gameResult => {
+    this.gameGateway.playGame(this.rankedGameRequest).pipe(takeUntil(this._destroy)).subscribe(gameResult => {
       this.mostRecentOutcome = gameResult.outcome;
     });
   }
@@ -49,7 +89,7 @@ export class GameComponent implements OnInit {
   processPracticeGame() {
     this.mostRecentOutcome = '';
 
-    this.practiceGameRequest = new PlayPracticeGameRequest(this.player1Throw, this.player2Throw);
+    this.practiceGameRequest = new PlayPracticeGameRequest(this.getValue('player1Throw'), this.getValue('player2Throw'));
 
     this.gameGateway.playPracticeGame(this.practiceGameRequest).subscribe(gameResult => {
       this.mostRecentOutcome = gameResult.outcome;
@@ -58,6 +98,23 @@ export class GameComponent implements OnInit {
 
   flipToggle() {
     this.isPracticeGame = !this.isPracticeGame;
+    this.updateValidator();
+  }
+
+  updateValidator() {
+    if (this.isPracticeGame == false) {
+      console.log("Real");
+      this.gameForm.get('selectedPlayer1').setValidators([Validators.required]);
+      this.gameForm.get('selectedPlayer2').setValidators([Validators.required]);
+    }
+    else {
+      console.log("Practice");
+      this.gameForm.get('selectedPlayer1').clearValidators();
+      this.gameForm.get('selectedPlayer1').updateValueAndValidity();
+      this.gameForm.get('selectedPlayer2').clearValidators();
+      this.gameForm.get('selectedPlayer2').updateValueAndValidity();
+    }
+    this.gameForm.updateValueAndValidity();
   }
 
   getPlayers() {

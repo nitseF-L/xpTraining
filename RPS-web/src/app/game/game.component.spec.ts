@@ -130,4 +130,13 @@ it('should process a ranked game through the gateway',  async(() => {
       expect(stubRpsGateway.playPracticeGameCalledWith.player2Throw).toBe('ROCK');
     });
   }));
+
+  it('should call this funcion createForm onInit', () =>{
+    spyOn(component, 'createForm');
+    expect(component.createForm).toHaveBeenCalled();
+  });
+
+  it('should create game form on createForm', () =>{
+    
+  })
 });
