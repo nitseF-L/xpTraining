@@ -1,17 +1,32 @@
-<mat-drawer-container class="sidebar-container">
-    <mat-drawer id="sidebar" #drawer class="sidenav-drawer" mode="side">
-      <nav *ngIf="sidebarOpen">
-          <a routerLink="/leaderboard" routerLinkActive="active">Leaderboard</a>
-          <br />
-          <a routerLink="/play" routerLinkActive="active">Play Game</a>
-      </nav>
-    </mat-drawer>
-  
-    <div class="sidenav-drawer2">
-      <button id="hamburger-stack" type="button" style="background-color:white;color:black" mat-button (click)="drawer.toggle(); sidebarOpen = !sidebarOpen;">
-            <i *ngIf="!sidebarOpen" class="material-icons">menu</i>
-            <i *ngIf="sidebarOpen" class="material-icons">arrow_back_ios</i>
-      </button>
-    </div>
-  
-  </mat-drawer-container>
+   <mat-sidenav-container #sidebar autosize>
+      <mat-sidenav> 
+         
+      </mat-sidenav>
+    <mat-sidenav-content mode="over" role="navigation">
+      <mat-nav-list>
+        <h2 matSubheader> Games </h2>
+
+        <a mat-list-item routerLink="/" style="height: 0;"></a>
+
+        <a mat-list-item routerLink="/leaderboard" routerLinkActive="list-item-active" (click)="closeSideNav.emit()">
+          <mat-icon matListIcon class="app-nav-list-icon">bar_chart</mat-icon>
+          Leaderboard
+        </a>
+        <br />
+        <a mat-list-item routerLink="/play" routerLinkActive="list-item-active" (click)="closeSideNav.emit()">
+          <mat-icon matListIcon class="app-nav-list-icon">games</mat-icon>
+          Play Game
+        </a>
+      </mat-nav-list>
+    </mat-sidenav-content>
+   </mat-sidenav-container>
+
+
+   <!-- <mat-sidenav-container style="height: 300px;" *ngIf="isDisplayed">
+      <mat-sidenav #sidenav mode="over" [opened]="toggled" class="sidenav" style="width: 200px;">
+        <p>Sidenav</p>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <p>Sidenav content hidden behing the sidenav.</p>
+      </mat-sidenav-content>
+    </mat-sidenav-container>   -->

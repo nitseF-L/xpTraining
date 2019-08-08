@@ -1,12 +1,6 @@
 <div class="container">
-    <div class="row">
-        <div  >
-                <app-sidebar class="sidenav"></app-sidebar>
+        <app-header></app-header>
+        <div class="col-9 content">
+                 <router-outlet></router-outlet>
         </div>
-        <div class="col-9">
-                 <router-outlet class="content"></router-outlet>
-        </div>
-    </div>
-    
-    
 </div>

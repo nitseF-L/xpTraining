@@ -1,5 +1,6 @@
+<div class="leaderboard-container">
 <p>
-  leaderboard works!
+  LEADER BOARD
 </p>
 <style type="text/css">
   .tg  {border-collapse:collapse;border-spacing:0;}
@@ -37,7 +38,7 @@
       </ng-container>
       
     </table>
-    <button (click)="getPlayerStats()" >Refresh</button>
+    <button class="refresh" (click)="getPlayerStats()" >Refresh</button>
 </ng-container>
 
 <ng-container *ngIf="selectedPlayer != -1">
@@ -60,5 +61,6 @@
   </table>
   <button (click)="showPlayer(-1)" >Back</button>
 </ng-container>
+</div>
 
 

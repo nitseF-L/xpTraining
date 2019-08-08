@@ -1,0 +1,20 @@
+.navigation-items{
+    list-style-type: none;
+    display: inline-flex;
+}
+
+.align-right{
+    position: absolute;
+    right: 10px;
+}
+
+.crm-navigation-bar{
+    background-image: linear-gradient(to top right, #4b6cb7, #182848);
+
+}
+
+
+.content {
+    margin: auto;
+    margin-top: 100px;
+}

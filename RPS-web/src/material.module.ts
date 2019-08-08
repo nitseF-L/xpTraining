@@ -5,7 +5,7 @@ import {
     // MatBadgeModule,
     // MatBottomSheetModule,
     MatButtonModule,
-    // MatButtonToggleModule,
+    MatButtonToggleModule,
     // MatCardModule,
     MatCheckboxModule,
     // MatChipsModule,
@@ -17,8 +17,8 @@ import {
     MatIconModule,
     MatFormFieldModule, 
     // MatInputModule,
-    // MatListModule,
-    // MatMenuModule,
+     MatListModule,
+     MatMenuModule,
     // MatNativeDateModule,
     // MatPaginatorModule,
     // MatProgressBarModule,
@@ -34,18 +34,18 @@ import {
     // MatStepperModule,
     // MatTableModule,
     // MatTabsModule,
-    // MatToolbarModule,
+     MatToolbarModule,
     // MatTooltipModule,
     // MatTreeModule,
   } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule, MatSidenavModule,
+  imports: [MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatSidenavModule,
             MatIconModule, MatSlideToggleModule, MatSliderModule,
-            BrowserAnimationsModule, MatFormFieldModule, MatSelectModule],
-  exports: [MatButtonModule, MatCheckboxModule, MatSidenavModule,
+            BrowserAnimationsModule, MatFormFieldModule, MatSelectModule,MatMenuModule,MatToolbarModule, MatListModule],
+  exports: [MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatSidenavModule,
             MatIconModule, MatSlideToggleModule, MatSliderModule,
-            BrowserAnimationsModule, MatFormFieldModule, MatSelectModule],
+            BrowserAnimationsModule, MatFormFieldModule, MatSelectModule,MatMenuModule,MatToolbarModule,MatListModule],
 })
 export class MaterialModule { }

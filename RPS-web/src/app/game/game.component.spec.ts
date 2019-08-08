@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GameComponent } from './game.component';
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from '../../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StubGameGateway } from './stub.game.gateway';
 import { GameGateway } from './game.gateway';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Outcome } from './game';
 
@@ -24,6 +24,7 @@ describe('GameComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
+        ReactiveFormsModule,
         FormsModule
       ],
       providers: [
@@ -117,6 +118,7 @@ it('should process a ranked game through the gateway',  async(() => {
 
   it('should process a practice game through the gateway', async(() => {
     component.isPracticeGame = true;
+    component.updateValidator();
     fixture.detectChanges();
     triggerMatSelect('player1Throw', 3);
     triggerMatSelect('player2Throw', 1);
@@ -131,12 +133,19 @@ it('should process a ranked game through the gateway',  async(() => {
     });
   }));
 
-  it('should call this funcion createForm onInit', () =>{
-    spyOn(component, 'createForm');
-    expect(component.createForm).toHaveBeenCalled();
-  });
-
-  it('should create game form on createForm', () =>{
-    
+  it('should disable submit button on page load for both cases', () =>{
+    const submitRanked  = fixture.nativeElement.querySelector('#submit-ranked');
+    const submitPractice = fixture.nativeElement.querySelector('#submit-practice');
+    expect(submitRanked.disabled).toBeTruthy();
+    expect(submitPractice).toBeFalsy();
+    const toggle = fixture.debugElement.query(By.css(`#gameModeToggle`));
+    const matSelect = toggle.query(By.css('.mat-slide-toggle-input')).nativeElement;
+    console.log(matSelect)
+    matSelect.click();
+    fixture.detectChanges();
+    const submitRanked_Flipped = fixture.nativeElement.querySelector('#submit-ranked');
+    const submitPractice_Flipped = fixture.nativeElement.querySelector('#submit-practice');
+    expect(submitPractice_Flipped.disabled).toBeTruthy();
+    expect(submitRanked_Flipped).toBeFalsy();
   })
 });

@@ -16,20 +16,12 @@ import { Subject } from 'rxjs';
 export class GameComponent implements OnInit, OnDestroy {
   
   gameResult: string;
-  // player1Name: string;
-  // player2Name: string;
-  // player1Id: number;
-  // player2Id: number;
-  // player1Throw: Throw;
-  // player2Throw: Throw;
   throwTypes: Throw[] = Object.keys(Throw).map(value => Throw[value]);
   throwLocalization = throwLocalization;
   mostRecentOutcome = '';
   rankedGameRequest: PlayGameRequest;
   practiceGameRequest: PlayPracticeGameRequest;
   playerList: Player[] = [];
-  // selectedPlayer1: Player;
-  // selectedPlayer2: Player;
 
   _destroy: Subject<void> = new Subject<void>();
 
@@ -64,10 +56,6 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameForm = this.fb.group({
       selectedPlayer1:[null],
       selectedPlayer2: [null],
-      // player1Name: ['',[Validators.required]],
-      // player2Name: ['',[Validators.required]],
-      // player1Id: [null, [Validators.required]],
-      // player2Id: [null, [Validators.required]],
       player1Throw: [null, [Validators.required]],
       player2Throw: [null, [Validators.required]]
     })
@@ -114,7 +102,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.gameForm.get('selectedPlayer2').clearValidators();
       this.gameForm.get('selectedPlayer2').updateValueAndValidity();
     }
-    this.gameForm.updateValueAndValidity();
+    // this.gameForm.updateValueAndValidity();
   }
 
   getPlayers() {
