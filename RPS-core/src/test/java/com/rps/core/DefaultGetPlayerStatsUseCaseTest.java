@@ -11,19 +11,25 @@ public class DefaultGetPlayerStatsUseCaseTest {
     DefaultGetPlayerStatsUseCase defaultGetPlayerStatsUseCase;
     DefaultCreateGameResultUseCase defaultCreateGameResultUseCase;
     InMemoryGameResultRepository gameResultRepository;
+    InMemoryPlayerRepository playerRepository;
     GameResultIdProvider gameResultIdProvider;
 
     @Before
     public void setup() {
         gameResultRepository = new InMemoryGameResultRepository();
         gameResultIdProvider = new StubGameResultIdProvider();
-        defaultGetPlayerStatsUseCase = new DefaultGetPlayerStatsUseCase(gameResultRepository);
+        playerRepository = new InMemoryPlayerRepository();
+        defaultGetPlayerStatsUseCase = new DefaultGetPlayerStatsUseCase(gameResultRepository, playerRepository);
         defaultCreateGameResultUseCase = new DefaultCreateGameResultUseCase(gameResultRepository, gameResultIdProvider);
 
         Player player1 = new Player("Wonder Woman", 41);
         Player player2 = new Player("Black Panther", 42);
         Player player3 = new Player("Iron Man", 43);
         Player player4 = new Player("Deadpool", 44);
+        playerRepository.save(player1);
+        playerRepository.save(player2);
+        playerRepository.save(player3);
+        playerRepository.save(player4);
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player2, Throw.ROCK, Throw.SCISSORS));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player1, Throw.SCISSORS, Throw.ROCK));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player3, Throw.ROCK, Throw.SCISSORS));

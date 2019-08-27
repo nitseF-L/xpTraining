@@ -30,8 +30,8 @@ public class GameResultsConfig {
     }
 
     @Bean
-    public GetPlayerStatsUseCase getPlayerStatsUseCase(DatabaseGameResultRepository databaseGameResultRepository){
-        return new DefaultGetPlayerStatsUseCase( databaseGameResultRepository );
+    public GetPlayerStatsUseCase getPlayerStatsUseCase(DatabaseGameResultRepository databaseGameResultRepository, DatabasePlayerRepository playerRepository){
+        return new DefaultGetPlayerStatsUseCase( databaseGameResultRepository, playerRepository);
     }
 
     @Bean
