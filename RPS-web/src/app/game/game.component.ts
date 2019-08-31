@@ -91,12 +91,12 @@ export class GameComponent implements OnInit, OnDestroy {
 
   updateValidator() {
     if (this.isPracticeGame == false) {
-      console.log("Real");
+      // console.log("Real");
       this.gameForm.get('selectedPlayer1').setValidators([Validators.required]);
       this.gameForm.get('selectedPlayer2').setValidators([Validators.required]);
     }
     else {
-      console.log("Practice");
+      // console.log("Practice");
       this.gameForm.get('selectedPlayer1').clearValidators();
       this.gameForm.get('selectedPlayer1').updateValueAndValidity();
       this.gameForm.get('selectedPlayer2').clearValidators();

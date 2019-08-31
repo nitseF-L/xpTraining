@@ -26,7 +26,7 @@
       <ng-container >
         <tr *ngFor="let playerStat of playerStats"  >
           <td> <button (click)="showPlayer( playerStat.player.id )" > {{playerStat.player.name}} </button>   </td>
-          <td>{{playerStat.winPercentage}}</td>
+          <td class="ps-winpercent-{{playerStat.player.id}}" >{{playerStat.winPercentage}}</td>
           <td>{{playerStat.gamesPlayed}}</td>
           <td>{{playerStat.gamesWon}}</td>
           <td>{{playerStat.gamesLost}}</td>

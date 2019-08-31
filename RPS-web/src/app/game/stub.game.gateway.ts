@@ -7,6 +7,13 @@ export class StubGameGateway implements GameGateway {
   playPracticeGameCalledWith: PlayPracticeGameRequest;
   playGameCalledWith: PlayGameRequest;
   stubOutcome: Outcome;
+  playerStats: PlayerStat[] = [];
+
+  constructor(){
+    this.playerStats.push(new PlayerStat(new Player("Player 1",1 ), 10, 0, 0, 10, 100, 10, 0, 0, 100, 0, 0));
+    this.playerStats.push(new PlayerStat(new Player("Player 2",2 ), 6, 2, 2, 10, 70, 5, 2, 3, 50, 20, 30));
+    this.playerStats.push(new PlayerStat(new Player("Player 3",3 ), 2, 4, 4, 10, 40, 2, 1, 7, 20, 10, 70));
+  }
 
   playPracticeGame(request: PlayPracticeGameRequest): Observable<PlayPracticeGameResponse> {
     this.playPracticeGameCalledWith = request;
@@ -29,11 +36,11 @@ export class StubGameGateway implements GameGateway {
   }
 
   getPlayerStats(): Observable<PlayerStat[]>{
-    const tempArray: PlayerStat[] = [];
-    tempArray.push(new PlayerStat(new Player("Player 1",1 ), 10, 0, 0, 10, 100, 10, 0, 0, 100, 0, 0));
-    tempArray.push(new PlayerStat(new Player("Player 2",2 ), 6, 2, 2, 10, 70, 5, 2, 3, 50, 20, 30));
-    tempArray.push(new PlayerStat(new Player("Player 3",3 ), 2, 4, 4, 10, 40, 2, 1, 7, 20, 10, 70));
-    return of(tempArray);
+    // let tempArray: PlayerStat[] = [];
+    // tempArray.push(new PlayerStat(new Player("Player 1",1 ), 10, 0, 0, 10, 100, 10, 0, 0, 100, 0, 0));
+    // tempArray.push(new PlayerStat(new Player("Player 2",2 ), 6, 2, 2, 10, 70, 5, 2, 3, 50, 20, 30));
+    // tempArray.push(new PlayerStat(new Player("Player 3",3 ), 2, 4, 4, 10, 40, 2, 1, 7, 20, 10, 70));
+    return of(this.playerStats);
   }
   getPlayerGameRecords(): Observable<GameRecord[]>{
     const tempArray: GameRecord[] = [];

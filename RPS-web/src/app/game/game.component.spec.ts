@@ -51,7 +51,7 @@ describe('GameComponent', () => {
 
   // This routine triggers a mat-select based on the drop down position
   // The first or 0 index position is 'select a value' so the actual
-  // values are index positions 1 - N 
+  // values are index positions 1 - N
   function triggerMatSelect(id: string, optionIndex: number) {
     const debugElement = fixture.debugElement.query(By.css(`#${id}`));
     const matSelect = debugElement.query(By.css('.mat-select-trigger')).nativeElement;
@@ -61,6 +61,20 @@ describe('GameComponent', () => {
     const matOption = debugElement.queryAll(By.css('.mat-option'))[optionIndex].nativeElement;
     matOption.click();
     fixture.detectChanges();
+  }
+
+  function triggerMatSlider(id: string) {
+    // This does work, not sure which is better
+    // const toggle = fixture.debugElement.query(By.css(`#${id}`));
+    // toggle.triggerEventHandler('change', null);
+    // fixture.detectChanges();
+
+    const toggle = fixture.debugElement.query(By.css(`#${id}`));
+    const matSelect = toggle.query(By.css('.mat-slide-toggle-input')).nativeElement;
+    console.log(matSelect);
+    matSelect.click();
+    fixture.detectChanges();
+
   }
 
   function triggerInput(id: string, passedValue: string) {
@@ -77,12 +91,7 @@ describe('GameComponent', () => {
     expect(fixture.nativeElement.querySelector('#player1Name')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('#player2Name')).toBeTruthy();
 
-    // const toggle = fixture.nativeElement.querySelector('#gameModeToggle');
-    // toggle.click();
-    // fixture.detectChanges();
-
-    component.flipToggle();
-    fixture.detectChanges();
+    triggerMatSlider('gameModeToggle');
 
     expect(component.isPracticeGame).toBe(true);
     expect(fixture.nativeElement.querySelector('#player1Name')).toBeNull();
@@ -90,7 +99,7 @@ describe('GameComponent', () => {
     expect(fixture.nativeElement.querySelector('#player2Name')).toBeNull();
     expect(fixture.nativeElement.querySelector('#player2Throw')).toBeTruthy();
   });
-it('should process a ranked game through the gateway',  async(() => {
+  it('should process a ranked game through the gateway',  async(() => {
     component.ngOnInit();
     component.isPracticeGame = false;
     fixture.detectChanges();
@@ -138,14 +147,12 @@ it('should process a ranked game through the gateway',  async(() => {
     const submitPractice = fixture.nativeElement.querySelector('#submit-practice');
     expect(submitRanked.disabled).toBeTruthy();
     expect(submitPractice).toBeFalsy();
-    const toggle = fixture.debugElement.query(By.css(`#gameModeToggle`));
-    const matSelect = toggle.query(By.css('.mat-slide-toggle-input')).nativeElement;
-    console.log(matSelect)
-    matSelect.click();
-    fixture.detectChanges();
-    const submitRanked_Flipped = fixture.nativeElement.querySelector('#submit-ranked');
-    const submitPractice_Flipped = fixture.nativeElement.querySelector('#submit-practice');
-    expect(submitPractice_Flipped.disabled).toBeTruthy();
-    expect(submitRanked_Flipped).toBeFalsy();
+
+    triggerMatSlider('gameModeToggle');
+
+    const submitRankedFlipped = fixture.nativeElement.querySelector('#submit-ranked');
+    const submitPracticeFlipped = fixture.nativeElement.querySelector('#submit-practice');
+    expect(submitPracticeFlipped.disabled).toBeTruthy();
+    expect(submitRankedFlipped).toBeFalsy();
   })
 });

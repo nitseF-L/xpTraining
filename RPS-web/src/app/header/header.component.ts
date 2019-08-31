@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   toggleSidenav(){
     this.showSideNav = !this.showSideNav;
-    console.log(this.showSideNav)
+    console.log(this.showSideNav);
   }
 
 }
