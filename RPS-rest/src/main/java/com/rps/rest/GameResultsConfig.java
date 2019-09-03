@@ -43,7 +43,7 @@ public class GameResultsConfig {
     public DataSource datasource() {
         return DataSourceBuilder.create()
                 .driverClassName("com.mysql.cj.jdbc.Driver")
-                .url("jdbc:mysql://localhost:3306/RPS")
+                .url("jdbc:mysql://localhost:3306/RPS?serverTimezone=UTC")
                 .username("RPS_USER")
                 .password("Rps")
                 .build();

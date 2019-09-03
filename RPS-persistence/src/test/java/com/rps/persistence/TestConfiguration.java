@@ -13,7 +13,7 @@ public class TestConfiguration {
     public DataSource datasource() {
         return DataSourceBuilder.create()
                 .driverClassName("com.mysql.cj.jdbc.Driver")
-                .url("jdbc:mysql://localhost:3306/RPS_TEST")
+                .url("jdbc:mysql://localhost:3306/RPS_TEST?serverTimezone=UTC")
                 .username("RPS_USER_TEST")
                 .password("RpsTest")
                 .build();
