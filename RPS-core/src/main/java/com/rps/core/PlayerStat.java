@@ -24,17 +24,6 @@ public class PlayerStat {
         this.scissorsThrown = scissorsThrown;
     }
 
-    public PlayerStat( GameStat gameStat ) {
-        this.player = gameStat.getPlayer();
-        switch ( gameStat.getResult() ){
-            case TIE: gamesTied = 1;
-                    break;
-            case WON: gamesWon = 1;
-                    break;
-            case LOSS: gamesLost =1;
-                    break;
-        }
-    }
 
     public Double getWinPercentage(){
         return (gamesWon + (gamesTied * .5)) / getGamesPlayed() * 100;
@@ -52,27 +41,6 @@ public class PlayerStat {
         return 100.0 * scissorsThrown / getGamesPlayed();
     }
 
-//    public PlayerStat merge( PlayerStat ps ){
-//        gamesWon += ps.gamesWon;
-//        gamesTied += ps.gamesTied;
-//        gamesLost += ps.gamesLost;
-//        return this;
-//    }
-//
-//    public PlayerStat merge( GameStat gameStat ){
-//        if( player == null )
-//            player = gameStat.getPlayer();
-//
-//        switch ( gameStat.getResult() ){
-//            case TIE: gamesTied++;
-//                break;
-//            case WON: gamesWon++;
-//                break;
-//            case LOSS: gamesLost++;
-//                break;
-//        }
-//        return this;
-//    }
 
     public long getGamesPlayed(){
         return gamesWon + gamesLost + gamesTied;
