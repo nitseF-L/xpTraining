@@ -26,14 +26,14 @@
       <ng-container >
         <tr *ngFor="let playerStat of playerStats"  >
           <td> <button (click)="showPlayer( playerStat.player.id )" > {{playerStat.player.name}} </button>   </td>
-          <td class="ps-winpercent-{{playerStat.player.id}}" >{{playerStat.winPercentage}}</td>
+          <td class="ps-winpercent-{{playerStat.player.id}}" >{{playerStat.winPercentage | number : '1.0-1'}}</td>
           <td>{{playerStat.gamesPlayed}}</td>
           <td>{{playerStat.gamesWon}}</td>
           <td>{{playerStat.gamesLost}}</td>
-          <td>{{playerStat.gamesTies}}</td>
-          <td>{{playerStat.rockPercent}}</td>
-          <td>{{playerStat.paperPercent}}</td>
-          <td>{{playerStat.scissorsPercent}}</td>
+          <td>{{playerStat.gamesTied}}</td>
+          <td>{{playerStat.rockPercent| number : '1.0-1'}}</td>
+          <td>{{playerStat.paperPercent| number : '1.0-1'}}</td>
+          <td>{{playerStat.scissorsPercent| number : '1.0-1'}}</td>
         </tr>
       </ng-container>
       
@@ -42,17 +42,25 @@
 </ng-container>
 
 <ng-container *ngIf="selectedPlayer != -1">
+  <div id="playerStats"> 
+  <p>Stats for {{selectedPlayerName}} </p>
+  <p>Winning Percentage: {{selectedPlayerWin | number : '1.0-1'}}% &nbsp; </p>
+  <p>Rocks Thrown (%): {{selectedPlayerRock | number : '1.0-1'}}% &nbsp; &nbsp; Papers Thrown (%): {{selectedPlayerPaper | number : '1.0-1'}}% &nbsp; &nbsp; Scissors Thrown (%): {{selectedPlayerScissors | number :'1.0-1'}}%<p>
+  
+</div>
   <table class="tg">
     <tr>
+
       <th class="tg-w3z3">Opponent</th>
       <th class="tg-w3z3">Result</th>
       <th class="tg-w3z3">Player Throw</th>
       <th class="tg-w3z3">Opponent Throw</th>
+      
     </tr>
     <ng-container >
       <tr *ngFor="let gameRecord of gameRecords"  >
         <td>{{gameRecord.opponent.name}}</td>
-        <td>{{gameRecord.result}}</td>
+        <td [ngStyle]="setWinLossStyle(gameRecord.result)">{{gameRecord.result}}</td>
         <td>{{gameRecord.playerThrow}}</td>
         <td>{{gameRecord.opponentThrow}}</td>
       </tr>

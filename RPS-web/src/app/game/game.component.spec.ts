@@ -110,6 +110,7 @@ describe('GameComponent', () => {
     triggerMatSelect('player2Name', 2);
 
     const submit = fixture.nativeElement.querySelector('#submit-ranked');
+    stubRpsGateway.stubOutcome = Outcome.P1Wins;
     submit.click();
 
     fixture.whenStable().then(() => {
@@ -121,7 +122,49 @@ describe('GameComponent', () => {
       expect(stubRpsGateway.playGameCalledWith.player2Throw).toBe('ROCK');
       expect(stubRpsGateway.playGameCalledWith.player2.name).toBe('Player 3');
       expect(stubRpsGateway.playGameCalledWith.player2.id).toBe(3);
-      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain(stubRpsGateway.stubOutcome);
+      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Player 1 Wins!');
+    });
+  }));
+
+  it('should show P2_WINS',  async(() => {
+    component.ngOnInit();
+    component.isPracticeGame = false;
+    fixture.detectChanges();
+    triggerMatSelect('player1Throw', 3);
+    triggerMatSelect('player1Name', 0);
+
+    triggerMatSelect('player2Throw', 1);
+    triggerMatSelect('player2Name', 2);
+
+    const submit = fixture.nativeElement.querySelector('#submit-ranked');
+    stubRpsGateway.stubOutcome = Outcome.P2Wins;
+    submit.click();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+    
+      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Player 3 Wins!');
+    });
+  }));
+
+  it('should show TIE',  async(() => {
+    component.ngOnInit();
+    component.isPracticeGame = false;
+    fixture.detectChanges();
+    triggerMatSelect('player1Throw', 3);
+    triggerMatSelect('player1Name', 0);
+
+    triggerMatSelect('player2Throw', 1);
+    triggerMatSelect('player2Name', 2);
+
+    const submit = fixture.nativeElement.querySelector('#submit-ranked');
+    stubRpsGateway.stubOutcome = Outcome.Tie;
+    submit.click();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+    
+      expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('tied');
     });
   }));
 

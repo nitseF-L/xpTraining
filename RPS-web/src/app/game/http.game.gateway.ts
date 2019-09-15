@@ -16,15 +16,15 @@ export class HttpGameGateway implements GameGateway {
     return this.http.post<GameResult>( 'http://localhost:8080/api/gameResults', request );
   }
 
-  getPlayers(): Observable<Player[]>{
+  getPlayers(): Observable<Player[]> {
     return this.http.get<Player[]>( 'http://localhost:8080/api/gameResults/playerList' );
   }
 
-  getPlayerStats(): Observable<PlayerStat[]>{
+  getPlayerStats(): Observable<PlayerStat[]> {
     return this.http.get<PlayerStat[]>( 'http://localhost:8080/api/gameResults/playerStats' );
   }
 
-  getPlayerGameRecords( playerId: number ): Observable<GameRecord[]>{
+  getPlayerGameRecords( playerId: number ): Observable<GameRecord[]> {
     return this.http.get<GameRecord[]>( 'http://localhost:8080/api/gameResults/playerGameRecords/' + playerId );
   }
 }
