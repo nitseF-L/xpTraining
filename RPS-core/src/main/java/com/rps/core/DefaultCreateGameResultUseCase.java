@@ -1,4 +1,5 @@
 package com.rps.core;
+import static com.rps.core.Outcome.INVALID;
 
 public class DefaultCreateGameResultUseCase implements CreateGameResultUseCase {
 
@@ -13,12 +14,20 @@ public class DefaultCreateGameResultUseCase implements CreateGameResultUseCase {
 
     @Override
     public GameResult execute(Request request) {
+        if(request.player1 == request.player2) {
+            return
+                    new GameResult(
+                            request.player1,
+                            request.player2,
+                            INVALID,
+                            request.player1Throw, request.player2Throw, -1)
+            ;
+        }
         return gameResultRepository.save(
                 new GameResult(
                         request.player1,
                         request.player2,
-                        RPS.play( request.player1Throw, request.player2Throw),
-                        request.player1Throw, request.player2Throw, gameResultIdProvider.getId() )
-        );
+                        RPS.play(request.player1Throw, request.player2Throw),
+                        request.player1Throw, request.player2Throw, gameResultIdProvider.getId()));
     }
 }

@@ -42,33 +42,46 @@ describe('LeaderboardComponent', () => {
     // Data rows
     let row1 = tableRows[1];
     expect(row1.cells[1].innerHTML).toBe('87.2');
+    expect(row1.cells[1].style.backgroundColor).toBe('red');
     expect(row1.cells[2].innerHTML).toBe('10');
     expect(row1.cells[3].innerHTML).toBe('10');
     expect(row1.cells[4].innerHTML).toBe('0');
     expect(row1.cells[5].innerHTML).toBe('0');
     expect(row1.cells[6].innerHTML).toBe('80');
+    expect(row1.cells[6].style.backgroundColor).toBe('orange');
     expect(row1.cells[7].innerHTML).toBe('13.5');
+    expect(row1.cells[7].style.backgroundColor).toBe('blue');
     expect(row1.cells[8].innerHTML).toBe('5.8');
+    expect(row1.cells[8].style.backgroundColor).toBe('blue');
 
     let row2 = tableRows[2];
     expect(row2.cells[1].innerHTML).toBe('73.5');
+    expect(row2.cells[1].style.backgroundColor).toBe('orange');
     expect(row2.cells[2].innerHTML).toBe('10');
     expect(row2.cells[3].innerHTML).toBe('6');
     expect(row2.cells[4].innerHTML).toBe('2');
     expect(row2.cells[5].innerHTML).toBe('2');
     expect(row2.cells[6].innerHTML).toBe('50');
+    expect(row2.cells[6].style.backgroundColor).toBe('');
     expect(row2.cells[7].innerHTML).toBe('20');
+    expect(row2.cells[7].style.backgroundColor).toBe('cyan');
     expect(row2.cells[8].innerHTML).toBe('30');
+    expect(row2.cells[8].style.backgroundColor).toBe('cyan');
 
     let row3 = tableRows[3];
     expect(row3.cells[1].innerHTML).toBe('42.4');
+    expect(row3.cells[1].style.backgroundColor).toBe('');
     expect(row3.cells[2].innerHTML).toBe('10');
     expect(row3.cells[3].innerHTML).toBe('2');
     expect(row3.cells[4].innerHTML).toBe('4');
     expect(row3.cells[5].innerHTML).toBe('4');
     expect(row3.cells[6].innerHTML).toBe('20');
+    expect(row3.cells[6].style.backgroundColor).toBe('cyan');
     expect(row3.cells[7].innerHTML).toBe('10');
+    expect(row3.cells[7].style.backgroundColor).toBe('blue');
     expect(row3.cells[8].innerHTML).toBe('70');
+    expect(row3.cells[8].style.backgroundColor).toBe('orange');
+    
     stubRpsGateway.playerStats[0].gamesWon = 11;
     const player = fixture.nativeElement.querySelector('button');
     console.log('Button', player);
@@ -81,6 +94,10 @@ describe('LeaderboardComponent', () => {
       expect( fixture.nativeElement.querySelector('#playerStats').innerHTML ).toContain( 'Rocks Thrown (%): 80%');
       expect( fixture.nativeElement.querySelector('#playerStats').innerHTML ).toContain( 'Papers Thrown (%): 13.5%');
       expect( fixture.nativeElement.querySelector('#playerStats').innerHTML ).toContain( 'Scissors Thrown (%): 5.8%');
+      expect( fixture.nativeElement.querySelector('#playerStats').innerHTML ).toContain( 'Lizards Thrown (%): 20.2%');
+      expect( fixture.nativeElement.querySelector('#playerStats').innerHTML ).toContain( 'Spocks Thrown (%): 9.2%');
+
+
 
       let row1 = tableRows[1];
       expect(row1.cells[0].innerHTML).toBe('Player 2');

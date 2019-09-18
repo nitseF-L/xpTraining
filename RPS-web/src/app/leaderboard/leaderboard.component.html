@@ -22,18 +22,22 @@
         <th class="tg-w3z3">Rocks Thrown (%)</th>
         <th class="tg-w3z3">Papers Thrown (%)</th>
         <th class="tg-w3z3">Scissors Thrown (%)</th>
+        <th class="tg-w3z3">Lizards Thrown (%)</th>
+        <th class="tg-w3z3">Spocks Thrown (%)</th>
       </tr>
       <ng-container >
         <tr *ngFor="let playerStat of playerStats"  >
           <td> <button (click)="showPlayer( playerStat.player.id )" > {{playerStat.player.name}} </button>   </td>
-          <td class="ps-winpercent-{{playerStat.player.id}}" >{{playerStat.winPercentage | number : '1.0-1'}}</td>
+          <td class="ps-winpercent-{{playerStat.player.id}}" [ngStyle]="setHeatStyle(playerStat.winPercentage)">{{playerStat.winPercentage | number : '1.0-1'}}</td>
           <td>{{playerStat.gamesPlayed}}</td>
           <td>{{playerStat.gamesWon}}</td>
           <td>{{playerStat.gamesLost}}</td>
           <td>{{playerStat.gamesTied}}</td>
-          <td>{{playerStat.rockPercent| number : '1.0-1'}}</td>
-          <td>{{playerStat.paperPercent| number : '1.0-1'}}</td>
-          <td>{{playerStat.scissorsPercent| number : '1.0-1'}}</td>
+          <td [ngStyle]="setHeatStyle(playerStat.rockPercent)">{{playerStat.rockPercent| number : '1.0-1'}}</td>
+          <td [ngStyle]="setHeatStyle(playerStat.paperPercent)">{{playerStat.paperPercent| number : '1.0-1'}}</td>
+          <td [ngStyle]="setHeatStyle(playerStat.scissorsPercent)">{{playerStat.scissorsPercent| number : '1.0-1'}}</td>
+          <td [ngStyle]="setHeatStyle(playerStat.lizardPercent)">{{playerStat.lizardPercent| number : '1.0-1'}}</td>
+          <td [ngStyle]="setHeatStyle(playerStat.spockPercent)">{{playerStat.spockPercent| number : '1.0-1'}}</td>
         </tr>
       </ng-container>
       
@@ -45,7 +49,7 @@
   <div id="playerStats"> 
   <p>Stats for {{selectedPlayerName}} </p>
   <p>Winning Percentage: {{selectedPlayerWin | number : '1.0-1'}}% &nbsp; </p>
-  <p>Rocks Thrown (%): {{selectedPlayerRock | number : '1.0-1'}}% &nbsp; &nbsp; Papers Thrown (%): {{selectedPlayerPaper | number : '1.0-1'}}% &nbsp; &nbsp; Scissors Thrown (%): {{selectedPlayerScissors | number :'1.0-1'}}%<p>
+  <p>Rocks Thrown (%): {{selectedPlayerRock | number : '1.0-1'}}% &nbsp; &nbsp; Papers Thrown (%): {{selectedPlayerPaper | number : '1.0-1'}}% &nbsp; &nbsp; Scissors Thrown (%): {{selectedPlayerScissors | number :'1.0-1'}}% &nbsp; &nbsp; Lizards Thrown (%): {{selectedPlayerLizard | number :'1.0-1'}}%&nbsp; &nbsp; Spocks Thrown (%): {{selectedPlayerSpock | number :'1.0-1'}}%</p>
   
 </div>
   <table class="tg">

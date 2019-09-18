@@ -17,6 +17,8 @@ export class LeaderboardComponent implements OnInit {
   selectedPlayerRock: number;
   selectedPlayerPaper: number;
   selectedPlayerScissors: number;
+  selectedPlayerLizard: number;
+  selectedPlayerSpock: number;
 
   constructor(private gameGateway: GameGateway) {
     this.playerStats = [];
@@ -67,6 +69,8 @@ export class LeaderboardComponent implements OnInit {
           this.selectedPlayerRock = returnedPlayerStats[i].rockPercent;
           this.selectedPlayerPaper = returnedPlayerStats[i].paperPercent;
           this.selectedPlayerScissors = returnedPlayerStats[i].scissorsPercent;
+          this.selectedPlayerLizard = returnedPlayerStats[i].lizardPercent;
+          this.selectedPlayerSpock = returnedPlayerStats[i].spockPercent;
         }
       }
       // this.playerList = this.playerList.sort((a,b) => a.name.localeCompare(b.name));
@@ -99,5 +103,21 @@ export class LeaderboardComponent implements OnInit {
     };
 
     return styles;
+  }
+  setHeatStyle(stat: number) {
+    let heatColor = '';
+    if (stat >= 85) {
+      heatColor = 'red';
+    } else if (stat < 85 && stat >= 70) {
+      heatColor = 'orange';
+    } else if (stat <= 30 && stat > 15) {
+      heatColor = 'cyan';
+    } else if (stat <= 15) {
+      heatColor = 'blue';
+    }
+    const style = {
+      backgroundColor:  heatColor
+    };
+    return style;
   }
 }

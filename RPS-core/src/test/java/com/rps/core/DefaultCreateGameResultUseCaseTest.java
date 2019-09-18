@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 public class DefaultCreateGameResultUseCaseTest {
 
     DefaultCreateGameResultUseCase defaultCreateGameResultUseCase;
@@ -38,7 +40,26 @@ public class DefaultCreateGameResultUseCaseTest {
         Assert.assertEquals( repoGameResult.getOutcome(), Outcome.P1_WINS );
         Assert.assertEquals( repoGameResult.getGameResultId(), gameResult.getGameResultId() );
 
+    }
+    @Test
+    public void execute_samePlayerDoesNotPersistsTheResult(){
+        Player player1 = new Player ("Jane Doe",1);
 
+        CreateGameResultUseCase.Request request = new CreateGameResultUseCase.Request();
+        request.player1 = player1;
+        request.player2 = player1;
+        request.player1Throw = Throw.ROCK;
+
+        GameResult gameResult = defaultCreateGameResultUseCase.execute(request);
+
+        Assert.assertEquals (gameResult.getOutcome(), Outcome.INVALID);
+
+        List <GameResult> gameResults = gameResultRepository.findAll();
+
+        Assert.assertEquals(0,gameResults.size());
+
+        GameResult repoGameResult = gameResultRepository.findById( gameResult.getGameResultId() );
+        Assert.assertEquals( null, repoGameResult);
 
     }
 }

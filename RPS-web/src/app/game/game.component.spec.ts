@@ -142,7 +142,6 @@ describe('GameComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-    
       expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('Player 3 Wins!');
     });
   }));
@@ -163,7 +162,6 @@ describe('GameComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-    
       expect(fixture.nativeElement.querySelector('#game-outcome').innerHTML).toContain('tied');
     });
   }));
@@ -197,5 +195,42 @@ describe('GameComponent', () => {
     const submitPracticeFlipped = fixture.nativeElement.querySelector('#submit-practice');
     expect(submitPracticeFlipped.disabled).toBeTruthy();
     expect(submitRankedFlipped).toBeFalsy();
-  })
+  });
+
+  it('should disable submit button for ranked matches', () =>{
+    component.ngOnInit();
+    component.isPracticeGame = false;
+    fixture.detectChanges();
+
+    const submitRanked  = fixture.nativeElement.querySelector('#submit-ranked');
+    expect(submitRanked.disabled).toBeTruthy();
+
+    triggerMatSelect('player1Throw', 3);
+    triggerMatSelect('player1Name', 0);
+
+    triggerMatSelect('player2Throw', 1);
+    triggerMatSelect('player2Name', 2);
+
+    fixture.detectChanges();
+
+    const submit = fixture.nativeElement.querySelector('#submit-ranked');
+    expect(submit.disabled).toBeFalsy();
+  });
+
+
+  it('should disable submit button for ranked mirror matches', () =>{
+    component.ngOnInit();
+    component.isPracticeGame = false;
+    fixture.detectChanges();
+    triggerMatSelect('player1Throw', 3);
+    triggerMatSelect('player1Name', 0);
+
+    triggerMatSelect('player2Throw', 1);
+    triggerMatSelect('player2Name', 0);
+
+    fixture.detectChanges();
+
+    const submit = fixture.nativeElement.querySelector('#submit-ranked');
+    expect(submit.disabled).toBeTruthy();
+  });
 });

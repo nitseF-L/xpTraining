@@ -44,9 +44,18 @@ public class DefaultPlayPracticeGameUseCaseTest {
 
         Assert.assertEquals( TIE, response.outcome );
 
+        request.player1Throw = PAPER;
+        request.player2Throw = SPOCK;
 
+        response = defaultCreateGameResultUseCase.execute(request);
 
+        Assert.assertEquals(P1_WINS,response.outcome);
 
+        request.player1Throw = LIZARD;
+        request.player2Throw = LIZARD;
 
+        response = defaultCreateGameResultUseCase.execute(request);
+
+        Assert.assertEquals(TIE, response.outcome);
     }
 }

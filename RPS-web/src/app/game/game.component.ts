@@ -3,7 +3,7 @@ import { Player, Throw, throwLocalization } from './game';
 import { HttpGameGateway } from './http.game.gateway';
 import { PlayGameRequest, PlayPracticeGameRequest, GameGateway } from './game.gateway';
 import { MatDialog } from '@angular/material';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -54,14 +54,14 @@ export class GameComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.gameForm = this.fb.group({
-      selectedPlayer1:[null],
+      selectedPlayer1: [null],
       selectedPlayer2: [null],
       player1Throw: [null, [Validators.required]],
       player2Throw: [null, [Validators.required]]
-    })
+    });
   }
 
-  getValue( name ){
+  getValue( name ) {
     return this.gameForm.get( name ).value;
   }
 
@@ -116,8 +116,13 @@ export class GameComponent implements OnInit, OnDestroy {
       for(let i = 0; i < returnedPlayers.length; i++) {
         this.playerList.push(returnedPlayers[i]);
       }
-      this.playerList = this.playerList.sort((a,b) => a.name.localeCompare(b.name));
+      this.playerList = this.playerList.sort((a, b) => a.name.localeCompare(b.name));
       console.log('got players', this.playerList);
-    })
+    });
+  }
+  playerNameSame() {
+    const p1 = this.getValue('selectedPlayer1');
+    const p2 = this.getValue('selectedPlayer2');
+    return p1 === p2;
   }
 }
