@@ -3,11 +3,9 @@ package com.rps.rest;
 import com.rps.core.*;
 import com.rps.persistence.DatabaseGameResultRepository;
 import com.rps.persistence.DatabasePlayerRepository;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
 
 @Configuration
 public class GameResultsConfig {
@@ -39,14 +37,6 @@ public class GameResultsConfig {
         return new DefaultGetPlayerGameRecordsUseCase( databaseGameResultRepository );
     }
 
-    @Bean
-    public DataSource datasource() {
-        return DataSourceBuilder.create()
-                .driverClassName("com.mysql.cj.jdbc.Driver")
-                .url("jdbc:mysql://localhost:3306/RPS?serverTimezone=UTC")
-                .username("RPS_USER")
-                .password("Rps")
-                .build();
-    }
+
 
 }
