@@ -26,10 +26,14 @@ public class DefaultGetPlayerStatsUseCaseTest {
         Player player2 = new Player("Black Panther", 42);
         Player player3 = new Player("Iron Man", 43);
         Player player4 = new Player("Deadpool", 44);
+        Player player5 = new Player("Superman", 45);
+        Player player6 = new Player("Batman", 46);
         playerRepository.save(player1);
         playerRepository.save(player2);
         playerRepository.save(player3);
         playerRepository.save(player4);
+        playerRepository.save(player5);
+        playerRepository.save(player6);
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player2, Throw.ROCK, Throw.SCISSORS));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player1, Throw.SCISSORS, Throw.ROCK));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player3, Throw.ROCK, Throw.SCISSORS));
@@ -45,7 +49,7 @@ public class DefaultGetPlayerStatsUseCaseTest {
     public void execute_returnsPlayerStats() {
 
         List<PlayerStat> stats = defaultGetPlayerStatsUseCase.execute();
-        Assert.assertEquals(4, stats.size());
+        Assert.assertEquals(6, stats.size());
         Assert.assertEquals(41, stats.get(0).getPlayer().getId());
         Assert.assertEquals(43, stats.get(1).getPlayer().getId());
         Assert.assertEquals(42, stats.get(2).getPlayer().getId());
@@ -54,12 +58,17 @@ public class DefaultGetPlayerStatsUseCaseTest {
         Assert.assertEquals(50.0, stats.get(1).getWinPercentage(), 0.001);
         Assert.assertEquals(41.666, stats.get(2).getWinPercentage(), 0.001);
         Assert.assertEquals(16.666, stats.get(3).getWinPercentage(), 0.001);
+        Assert.assertEquals(0, stats.get(4).getWinPercentage(), 0.001);
+        Assert.assertEquals(0, stats.get(5).getWinPercentage(), 0.001);
         Assert.assertEquals(100.0, stats.get(0).getRockPercent(), 0.001);
         Assert.assertEquals(0.0, stats.get(0).getPaperPercent(), 0.001);
         Assert.assertEquals(0.0, stats.get(0).getScissorsPercent(), 0.001);
         Assert.assertEquals(33.333, stats.get(2).getRockPercent(), 0.001);
         Assert.assertEquals(16.666, stats.get(2).getPaperPercent(), 0.001);
         Assert.assertEquals(50.0, stats.get(2).getScissorsPercent(), 0.001);
+        Assert.assertEquals(0, stats.get(5).getRockPercent(), 0.001);
+        Assert.assertEquals(0, stats.get(5).getPaperPercent(), 0.001);
+        Assert.assertEquals(0, stats.get(5).getScissorsPercent(), 0.001);
 
         }
 }
