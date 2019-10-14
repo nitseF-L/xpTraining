@@ -22,9 +22,9 @@ public abstract class GameResultRepositoryTest {
 
     @Test
     public void canGetResults(){
-        Player player1 = new Player("Jane Doe", 1 );
+        Player player1 = PlayerFactory.buildPlayer();
         playerRepository.save( player1 );
-        Player player2 = new Player("John Doe", 2 );
+        Player player2 = PlayerFactory.buildPlayer();
         playerRepository.save( player2 );
         GameResult gameResult = new GameResult(player1, player2, Outcome.P1_WINS, Throw.ROCK, Throw.PAPER, 1 );
         gameResultRepository.save( gameResult );
@@ -35,9 +35,9 @@ public abstract class GameResultRepositoryTest {
 
     @Test
     public void canGetResultsById(){
-        Player player1 = new Player("Jane Smith", 1 );
+        Player player1 = PlayerFactory.buildPlayer();
         playerRepository.save( player1 );
-        Player player2 = new Player("John Smith", 2 );
+        Player player2 = PlayerFactory.buildPlayer();
         playerRepository.save( player2 );
         GameResult gameResult = new GameResult(player1, player2, Outcome.P1_WINS, Throw.PAPER, Throw.ROCK, 1 );
         gameResultRepository.save( gameResult );

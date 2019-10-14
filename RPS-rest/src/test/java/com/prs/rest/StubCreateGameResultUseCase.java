@@ -6,8 +6,8 @@ public class StubCreateGameResultUseCase implements CreateGameResultUseCase {
 
     public GameResult stubbedCreateGameResultUseCaseResponse =
             new GameResult(
-                    new Player("Jane Doe", 1),
-                    new Player("John Doe", 2),
+                    PlayerFactory.buildPlayer(),
+                    PlayerFactory.buildPlayer(),
                     Outcome.P1_WINS,
                     Throw.ROCK, Throw.SCISSORS, 42
                     );
