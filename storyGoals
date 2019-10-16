@@ -1,0 +1,38 @@
+(1)
+The goal of this story is to figure out what a good test is for rounding the percision.
+good tests would include rounding up and down as well as rounding with no decimal places.
+For example:
+
+	42.42456 -> 42.4
+	44.45678 -> 44.5
+	79.98765 -> 80
+	
+(2)
+The goal of this bug is to realize that there are missing tests. There should be a test
+for each column in the table.
+
+(3)
+Here we need to write the test first, also it should be noted that all the infomation needed
+is already in the response, so there is no need to make an extra call to the back end.
+
+(4)
+Want to show that you should design your code to be testable, may want to have the div be 
+named so that it is easier to write the test.
+
+(5,6)
+More practice at writing Angular tests.
+
+(7)
+Goal is that validation should be done on BOTH the front and back ends. The back end is an
+API and other application may call it, so it must validate the data.
+
+(8)
+Goal of this is major changes to both Java and Angular in a single story. Users can work 
+front to back or back to front as they desire.
+
+(9)
+The goal of this is to figure out how to test something random like a date. Should consider
+using a DateProvider interface simular to the pattern of the GameResulutIdProvider.
+
+(10)
+The goal of this is understanding Java Streams. One solution is the Stream.concat function.
