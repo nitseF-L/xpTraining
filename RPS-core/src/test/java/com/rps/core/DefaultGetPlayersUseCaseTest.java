@@ -1,17 +1,18 @@
 package com.rps.core;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DefaultGetPlayersUseCaseTest {
 
     DefaultGetPlayersUseCase defaultGetPlayersUseCase;
     InMemoryPlayerRepository playerRepository;
 
-    @Before
+    @BeforeEach
     public void setup(){
         playerRepository = new InMemoryPlayerRepository();
         defaultGetPlayersUseCase = new DefaultGetPlayersUseCase(playerRepository);
@@ -25,11 +26,11 @@ public class DefaultGetPlayersUseCaseTest {
 
         List<Player> players = defaultGetPlayersUseCase.execute();
 
-        Assert.assertEquals( 2, players.size() );
-        Assert.assertEquals( "Wonder Woman", players.get(0).getName());
-        Assert.assertEquals( "Black Panther", players.get(1).getName());
-        Assert.assertEquals( 41, players.get(0).getId());
-        Assert.assertEquals( 42, players.get(1).getId());
+        assertEquals( 2, players.size() );
+        assertEquals( "Wonder Woman", players.get(0).getName());
+        assertEquals( "Black Panther", players.get(1).getName());
+        assertEquals( 41, players.get(0).getId());
+        assertEquals( 42, players.get(1).getId());
 
     }
 

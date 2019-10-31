@@ -1,8 +1,8 @@
 package com.rps.core;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DefaultCreateGameResultUseCaseTest {
 
@@ -10,7 +10,7 @@ public class DefaultCreateGameResultUseCaseTest {
     GameResultRepository gameResultRepository;
     GameResultIdProvider gameResultIdProvider;
 
-    @Before
+    @BeforeEach
     public void setup(){
         gameResultRepository = new InMemoryGameResultRepository();
         gameResultIdProvider = new StubGameResultIdProvider();
@@ -30,15 +30,12 @@ public class DefaultCreateGameResultUseCaseTest {
 
         GameResult gameResult = defaultCreateGameResultUseCase.execute( request );
 
-        Assert.assertEquals( gameResult.getOutcome(), Outcome.P1_WINS );
+        assertEquals( gameResult.getOutcome(), Outcome.P1_WINS );
 
         GameResult repoGameResult = gameResultRepository.findById( gameResult.getGameResultId() );
-        Assert.assertEquals( repoGameResult.getPlayer1(), player1 );
-        Assert.assertEquals( repoGameResult.getPlayer2(), player2 );
-        Assert.assertEquals( repoGameResult.getOutcome(), Outcome.P1_WINS );
-        Assert.assertEquals( repoGameResult.getGameResultId(), gameResult.getGameResultId() );
-
-
-
+        assertEquals( repoGameResult.getPlayer1(), player1 );
+        assertEquals( repoGameResult.getPlayer2(), player2 );
+        assertEquals( repoGameResult.getOutcome(), Outcome.P1_WINS );
+        assertEquals( repoGameResult.getGameResultId(), gameResult.getGameResultId() );
     }
 }

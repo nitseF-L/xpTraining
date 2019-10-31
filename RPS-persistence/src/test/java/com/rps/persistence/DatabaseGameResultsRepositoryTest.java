@@ -3,13 +3,13 @@ package com.rps.persistence;
 import com.rps.core.GameResultRepository;
 import com.rps.core.GameResultRepositoryTest;
 import com.rps.core.PlayerRepository;
-import org.junit.Before;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class DatabaseGameResultsRepositoryTest extends GameResultRepositoryTest {
 
@@ -22,7 +22,7 @@ public class DatabaseGameResultsRepositoryTest extends GameResultRepositoryTest 
     @Autowired
     DatabaseCleaner databaseCleaner;
 
-    @Before
+    @BeforeEach
     public void cleanDB(){ databaseCleaner.deleteAllRows();}
 
     protected GameResultRepository getGameResultRepository() {

@@ -1,10 +1,11 @@
 package com.rps.core;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DefaultGetPlayerStatsUseCaseTest {
 
@@ -13,7 +14,7 @@ public class DefaultGetPlayerStatsUseCaseTest {
     InMemoryGameResultRepository gameResultRepository;
     GameResultIdProvider gameResultIdProvider;
 
-    @Before
+    @BeforeEach
     public void setup() {
         gameResultRepository = new InMemoryGameResultRepository();
         gameResultIdProvider = new StubGameResultIdProvider();
@@ -32,29 +33,27 @@ public class DefaultGetPlayerStatsUseCaseTest {
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.SCISSORS));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player4, player2, Throw.ROCK, Throw.PAPER));
         defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player4, player3, Throw.PAPER, Throw.SCISSORS));
-
-        }
+    }
 
     @Test
     public void execute_returnsPlayerStats() {
 
         List<PlayerStat> stats = defaultGetPlayerStatsUseCase.execute();
-        Assert.assertEquals(4, stats.size());
-        Assert.assertEquals(41, stats.get(0).getPlayer().getId());
-        Assert.assertEquals(43, stats.get(1).getPlayer().getId());
-        Assert.assertEquals(42, stats.get(2).getPlayer().getId());
-        Assert.assertEquals(44, stats.get(3).getPlayer().getId());
-        Assert.assertEquals(100.0, stats.get(0).getWinPercentage(), 0.001);
-        Assert.assertEquals(50.0, stats.get(1).getWinPercentage(), 0.001);
-        Assert.assertEquals(41.666, stats.get(2).getWinPercentage(), 0.001);
-        Assert.assertEquals(16.666, stats.get(3).getWinPercentage(), 0.001);
-        Assert.assertEquals(100.0, stats.get(0).getRockPercent(), 0.001);
-        Assert.assertEquals(0.0, stats.get(0).getPaperPercent(), 0.001);
-        Assert.assertEquals(0.0, stats.get(0).getScissorsPercent(), 0.001);
-        Assert.assertEquals(33.333, stats.get(2).getRockPercent(), 0.001);
-        Assert.assertEquals(16.666, stats.get(2).getPaperPercent(), 0.001);
-        Assert.assertEquals(50.0, stats.get(2).getScissorsPercent(), 0.001);
-
-        }
+        assertEquals(4, stats.size());
+        assertEquals(41, stats.get(0).getPlayer().getId());
+        assertEquals(43, stats.get(1).getPlayer().getId());
+        assertEquals(42, stats.get(2).getPlayer().getId());
+        assertEquals(44, stats.get(3).getPlayer().getId());
+        assertEquals(100.0, stats.get(0).getWinPercentage(), 0.001);
+        assertEquals(50.0, stats.get(1).getWinPercentage(), 0.001);
+        assertEquals(41.666, stats.get(2).getWinPercentage(), 0.001);
+        assertEquals(16.666, stats.get(3).getWinPercentage(), 0.001);
+        assertEquals(100.0, stats.get(0).getRockPercent(), 0.001);
+        assertEquals(0.0, stats.get(0).getPaperPercent(), 0.001);
+        assertEquals(0.0, stats.get(0).getScissorsPercent(), 0.001);
+        assertEquals(33.333, stats.get(2).getRockPercent(), 0.001);
+        assertEquals(16.666, stats.get(2).getPaperPercent(), 0.001);
+        assertEquals(50.0, stats.get(2).getScissorsPercent(), 0.001);
+    }
 }
 

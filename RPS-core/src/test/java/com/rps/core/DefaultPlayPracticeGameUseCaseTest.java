@@ -1,17 +1,17 @@
 package com.rps.core;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static com.rps.core.Outcome.*;
 import static com.rps.core.Throw.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DefaultPlayPracticeGameUseCaseTest {
 
     DefaultPlayPracticeGameUseCase defaultCreateGameResultUseCase;
 
-    @Before
+    @BeforeEach
     public void setup(){
 
         defaultCreateGameResultUseCase = new DefaultPlayPracticeGameUseCase( );
@@ -28,25 +28,20 @@ public class DefaultPlayPracticeGameUseCaseTest {
 
         PlayPracticeGameUseCase.Response response = defaultCreateGameResultUseCase.execute( request );
 
-        Assert.assertEquals( P1_WINS, response.outcome );
+        assertEquals( P1_WINS, response.outcome );
 
         request.player1Throw = SCISSORS;
         request.player2Throw = ROCK;
 
         response = defaultCreateGameResultUseCase.execute( request );
 
-        Assert.assertEquals( P2_WINS, response.outcome );
+        assertEquals( P2_WINS, response.outcome );
 
         request.player1Throw = ROCK;
         request.player2Throw = ROCK;
 
         response = defaultCreateGameResultUseCase.execute( request );
 
-        Assert.assertEquals( TIE, response.outcome );
-
-
-
-
-
+        assertEquals( TIE, response.outcome );
     }
 }

@@ -1,8 +1,8 @@
 package com.rps.core;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class DefaultGetPlayerGameRecordsUseCaseTest {
     InMemoryGameResultRepository gameResultRepository;
     GameResultIdProvider gameResultIdProvider;
 
-    @Before
+    @BeforeEach
     public void setup() {
         gameResultRepository = new InMemoryGameResultRepository();
         gameResultIdProvider = new StubGameResultIdProvider();
@@ -39,17 +39,16 @@ public class DefaultGetPlayerGameRecordsUseCaseTest {
     public void execute_returnsPlayerStats() {
 
         List<GameRecord> records = defaultGetPlayerGameRecordsUseCase.execute( 42 );
-        Assert.assertEquals(6, records.size());
-        Assert.assertEquals(41, records.get(0).getOpponent().getId());
-        Assert.assertEquals(41, records.get(1).getOpponent().getId());
-        Assert.assertEquals(43, records.get(2).getOpponent().getId());
-        Assert.assertEquals(44, records.get(3).getOpponent().getId());
-        Assert.assertEquals(43, records.get(4).getOpponent().getId());
-        Assert.assertEquals(44, records.get(5).getOpponent().getId());
-        Assert.assertEquals(Throw.ROCK, records.get(0).getOpponentThrow());
-        Assert.assertEquals(Throw.PAPER, records.get(1).getOpponentThrow());
-        Assert.assertEquals(Throw.SCISSORS, records.get(0).getPlayerThrow());
-        Assert.assertEquals(Throw.ROCK, records.get(1).getPlayerThrow());
-
+        assertEquals(6, records.size());
+        assertEquals(41, records.get(0).getOpponent().getId());
+        assertEquals(41, records.get(1).getOpponent().getId());
+        assertEquals(43, records.get(2).getOpponent().getId());
+        assertEquals(44, records.get(3).getOpponent().getId());
+        assertEquals(43, records.get(4).getOpponent().getId());
+        assertEquals(44, records.get(5).getOpponent().getId());
+        assertEquals(Throw.ROCK, records.get(0).getOpponentThrow());
+        assertEquals(Throw.PAPER, records.get(1).getOpponentThrow());
+        assertEquals(Throw.SCISSORS, records.get(0).getPlayerThrow());
+        assertEquals(Throw.ROCK, records.get(1).getPlayerThrow());
     }
 }
