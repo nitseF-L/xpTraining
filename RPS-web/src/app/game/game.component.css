@@ -1,0 +1,48 @@
+.throw-container{
+    padding-top: 20px;
+}
+
+.mat-select-custom{
+    background-color: #182848;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: 36px;
+}
+
+
+.container{
+    width: 50%;
+    margin: auto;
+    /* background-image: linear-gradient(to top right, #ECE9E6, #FFFFFF); */
+
+    padding-top: 100px;
+}
+
+.toggle{
+    padding: 24px 5px 24px 5px;
+}
+mat-slide-toggle {
+    padding-left: 8px;
+}
+
+.player-container{
+    display: flex;
+    
+}
+
+.name{
+    flex: 0 0 50%;
+    padding: 8px 24px 8px 24px;
+}
+.throw{
+    /* border: 1px solid #696969; */
+    /* flex: 0 0 40%; */
+    width: 40%;
+    padding: 8px 24px 8px 24px;
+}
+
+.submit-button[disabled]{
+    background-color: #182848;
+    opacity: 0.8;
+}
+
