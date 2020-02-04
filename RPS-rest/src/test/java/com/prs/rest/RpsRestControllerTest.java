@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -114,10 +113,10 @@ public class RpsRestControllerTest {
         stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( player2, 6, 2, 2, 2, 4, 4));
         stubbedPlayerStatsUseCaseResponse.add( new PlayerStat( player3, 2, 4, 4, 3, 3, 4));
         stubbedGetPlayerGameRecordsUseCaseResponse = Config.stubGetPlayerGameRecordsUseCase.stubbedGetPlayerGameRecordsUseCase;
-        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 1, player1, player2, WON, ROCK, SCISSORS ));
-        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 2, player1, player3, LOSS, ROCK, PAPER ));
+        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 1, player1, player2, WON, ROCK, SPOCK));
+        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 2, player1, player3, LOSS, ROCK, LIZARD));
         stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 3, player1, player4, GameRecord.Result.TIE, ROCK, ROCK ));
-        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 4, player1, player2, WON, SCISSORS, PAPER ));
+        stubbedGetPlayerGameRecordsUseCaseResponse.add( new GameRecord( 4, player1, player2, WON, SPOCK, LIZARD));
 
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
@@ -148,7 +147,7 @@ public class RpsRestControllerTest {
         request.player1 = new Player( "Jane Doe", 1);
         request.player2 = new Player("John Doe", 2);
         request.player1Throw = ROCK;
-        request.player2Throw = SCISSORS;
+        request.player2Throw = SPOCK;
         return request;
     }
 
@@ -172,8 +171,8 @@ public class RpsRestControllerTest {
 
     private PlayPracticeGameUseCase.Request buildPracticeGameResultRequest() {
         PlayPracticeGameUseCase.Request request = new PlayPracticeGameUseCase.Request();
-        request.player1Throw = PAPER;
-        request.player2Throw = SCISSORS;
+        request.player1Throw = LIZARD;
+        request.player2Throw = SPOCK;
         return request;
     }
 

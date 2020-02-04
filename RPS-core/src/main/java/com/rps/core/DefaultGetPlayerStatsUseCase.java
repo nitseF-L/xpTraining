@@ -27,8 +27,8 @@ public class DefaultGetPlayerStatsUseCase implements GetPlayerStatsUseCase {
                     int sumLoses = x.getValue().stream().mapToInt( gr -> (gr.getResult() == GameRecord.Result.LOSS) ? 1 : 0).sum();
                     int sumTies = x.getValue().stream().mapToInt( gr -> (gr.getResult() == GameRecord.Result.TIE) ? 1 : 0).sum();
                     int sumRocks = x.getValue().stream().mapToInt( gr -> (gr.getPlayerThrow() == Throw.ROCK) ? 1 : 0).sum();
-                    int sumPapers = x.getValue().stream().mapToInt( gr -> (gr.getPlayerThrow() == Throw.PAPER) ? 1 : 0).sum();
-                    int sumScissors = x.getValue().stream().mapToInt( gr -> (gr.getPlayerThrow() == Throw.SCISSORS) ? 1 : 0).sum();
+                    int sumPapers = x.getValue().stream().mapToInt( gr -> (gr.getPlayerThrow() == Throw.LIZARD) ? 1 : 0).sum();
+                    int sumScissors = x.getValue().stream().mapToInt( gr -> (gr.getPlayerThrow() == Throw.SPOCK) ? 1 : 0).sum();
                     return new PlayerStat(x.getKey(), sumWins, sumLoses, sumTies, sumRocks, sumPapers, sumScissors);
                 } )
                 .sorted( reversePlayerStatComparator )

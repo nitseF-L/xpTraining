@@ -24,13 +24,13 @@ public class DefaultPlayPracticeGameUseCaseTest {
         PlayPracticeGameUseCase.Request request = new PlayPracticeGameUseCase.Request( );
 
         request.player1Throw = ROCK;
-        request.player2Throw = SCISSORS;
+        request.player2Throw = SPOCK;
 
         PlayPracticeGameUseCase.Response response = defaultCreateGameResultUseCase.execute( request );
 
         assertEquals( P1_WINS, response.outcome );
 
-        request.player1Throw = SCISSORS;
+        request.player1Throw = SPOCK;
         request.player2Throw = ROCK;
 
         response = defaultCreateGameResultUseCase.execute( request );

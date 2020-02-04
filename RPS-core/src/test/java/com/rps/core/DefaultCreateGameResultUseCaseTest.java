@@ -26,7 +26,7 @@ public class DefaultCreateGameResultUseCaseTest {
         request.player1 = player1;
         request.player2 = player2;
         request.player1Throw = Throw.ROCK;
-        request.player2Throw = Throw.SCISSORS;
+        request.player2Throw = Throw.SPOCK;
 
         GameResult gameResult = defaultCreateGameResultUseCase.execute( request );
 

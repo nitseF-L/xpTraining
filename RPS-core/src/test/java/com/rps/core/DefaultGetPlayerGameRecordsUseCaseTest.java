@@ -24,14 +24,14 @@ public class DefaultGetPlayerGameRecordsUseCaseTest {
         Player player2 = new Player("Black Panther", 42);
         Player player3 = new Player("Iron Man", 43);
         Player player4 = new Player("Deadpool", 44);
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player2, Throw.ROCK, Throw.SCISSORS));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player1, Throw.ROCK, Throw.PAPER));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player3, Throw.SCISSORS, Throw.PAPER));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.PAPER));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player4, Throw.SCISSORS, Throw.SCISSORS));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.SCISSORS));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player4, player2, Throw.ROCK, Throw.PAPER));
-        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player4, player3, Throw.PAPER, Throw.SCISSORS));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player2, Throw.ROCK, Throw.SPOCK));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player1, Throw.ROCK, Throw.LIZARD));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player1, player3, Throw.SPOCK, Throw.LIZARD));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.LIZARD));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player4, Throw.SPOCK, Throw.SPOCK));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player2, player3, Throw.ROCK, Throw.SPOCK));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player4, player2, Throw.ROCK, Throw.LIZARD));
+        defaultCreateGameResultUseCase.execute(new CreateGameResultUseCase.Request(player4, player3, Throw.LIZARD, Throw.SPOCK));
 
     }
 
@@ -47,8 +47,8 @@ public class DefaultGetPlayerGameRecordsUseCaseTest {
         assertEquals(43, records.get(4).getOpponent().getId());
         assertEquals(44, records.get(5).getOpponent().getId());
         assertEquals(Throw.ROCK, records.get(0).getOpponentThrow());
-        assertEquals(Throw.PAPER, records.get(1).getOpponentThrow());
-        assertEquals(Throw.SCISSORS, records.get(0).getPlayerThrow());
+        assertEquals(Throw.LIZARD, records.get(1).getOpponentThrow());
+        assertEquals(Throw.SPOCK, records.get(0).getPlayerThrow());
         assertEquals(Throw.ROCK, records.get(1).getPlayerThrow());
     }
 }
